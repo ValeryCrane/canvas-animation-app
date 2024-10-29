@@ -1,0 +1,612 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A32F71DC2CD1664A00A684A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F71DB2CD1664A00A684A7 /* AppDelegate.swift */; };
+		A32F71DE2CD1664A00A684A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F71DD2CD1664A00A684A7 /* SceneDelegate.swift */; };
+		A32F71E02CD1664A00A684A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F71DF2CD1664A00A684A7 /* ViewController.swift */; };
+		A32F71E32CD1664A00A684A7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A32F71E22CD1664A00A684A7 /* Base */; };
+		A32F71E52CD1664A00A684A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A32F71E42CD1664A00A684A7 /* Assets.xcassets */; };
+		A32F71E82CD1664A00A684A7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A32F71E72CD1664A00A684A7 /* Base */; };
+		A32F71F32CD1664A00A684A7 /* canvas_animation_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F71F22CD1664A00A684A7 /* canvas_animation_appTests.swift */; };
+		A32F71FD2CD1664A00A684A7 /* canvas_animation_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F71FC2CD1664A00A684A7 /* canvas_animation_appUITests.swift */; };
+		A32F71FF2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F71FE2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A32F71EF2CD1664A00A684A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A32F71D02CD1664A00A684A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A32F71D72CD1664A00A684A7;
+			remoteInfo = "canvas-animation-app";
+		};
+		A32F71F92CD1664A00A684A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A32F71D02CD1664A00A684A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A32F71D72CD1664A00A684A7;
+			remoteInfo = "canvas-animation-app";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A32F71D82CD1664A00A684A7 /* canvas-animation-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "canvas-animation-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A32F71DB2CD1664A00A684A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A32F71DD2CD1664A00A684A7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A32F71DF2CD1664A00A684A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A32F71E22CD1664A00A684A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A32F71E42CD1664A00A684A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A32F71E72CD1664A00A684A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A32F71E92CD1664A00A684A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A32F71EE2CD1664A00A684A7 /* canvas-animation-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "canvas-animation-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A32F71F22CD1664A00A684A7 /* canvas_animation_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = canvas_animation_appTests.swift; sourceTree = "<group>"; };
+		A32F71F82CD1664A00A684A7 /* canvas-animation-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "canvas-animation-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A32F71FC2CD1664A00A684A7 /* canvas_animation_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = canvas_animation_appUITests.swift; sourceTree = "<group>"; };
+		A32F71FE2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = canvas_animation_appUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A32F71D52CD1664A00A684A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A32F71EB2CD1664A00A684A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A32F71F52CD1664A00A684A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A32F71CF2CD1664A00A684A7 = {
+			isa = PBXGroup;
+			children = (
+				A32F71DA2CD1664A00A684A7 /* canvas-animation-app */,
+				A32F71F12CD1664A00A684A7 /* canvas-animation-appTests */,
+				A32F71FB2CD1664A00A684A7 /* canvas-animation-appUITests */,
+				A32F71D92CD1664A00A684A7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A32F71D92CD1664A00A684A7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A32F71D82CD1664A00A684A7 /* canvas-animation-app.app */,
+				A32F71EE2CD1664A00A684A7 /* canvas-animation-appTests.xctest */,
+				A32F71F82CD1664A00A684A7 /* canvas-animation-appUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A32F71DA2CD1664A00A684A7 /* canvas-animation-app */ = {
+			isa = PBXGroup;
+			children = (
+				A32F71DB2CD1664A00A684A7 /* AppDelegate.swift */,
+				A32F71DD2CD1664A00A684A7 /* SceneDelegate.swift */,
+				A32F71DF2CD1664A00A684A7 /* ViewController.swift */,
+				A32F71E12CD1664A00A684A7 /* Main.storyboard */,
+				A32F71E42CD1664A00A684A7 /* Assets.xcassets */,
+				A32F71E62CD1664A00A684A7 /* LaunchScreen.storyboard */,
+				A32F71E92CD1664A00A684A7 /* Info.plist */,
+			);
+			path = "canvas-animation-app";
+			sourceTree = "<group>";
+		};
+		A32F71F12CD1664A00A684A7 /* canvas-animation-appTests */ = {
+			isa = PBXGroup;
+			children = (
+				A32F71F22CD1664A00A684A7 /* canvas_animation_appTests.swift */,
+			);
+			path = "canvas-animation-appTests";
+			sourceTree = "<group>";
+		};
+		A32F71FB2CD1664A00A684A7 /* canvas-animation-appUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A32F71FC2CD1664A00A684A7 /* canvas_animation_appUITests.swift */,
+				A32F71FE2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift */,
+			);
+			path = "canvas-animation-appUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A32F71D72CD1664A00A684A7 /* canvas-animation-app */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A32F72022CD1664A00A684A7 /* Build configuration list for PBXNativeTarget "canvas-animation-app" */;
+			buildPhases = (
+				A32F71D42CD1664A00A684A7 /* Sources */,
+				A32F71D52CD1664A00A684A7 /* Frameworks */,
+				A32F71D62CD1664A00A684A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "canvas-animation-app";
+			productName = "canvas-animation-app";
+			productReference = A32F71D82CD1664A00A684A7 /* canvas-animation-app.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A32F71ED2CD1664A00A684A7 /* canvas-animation-appTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A32F72052CD1664A00A684A7 /* Build configuration list for PBXNativeTarget "canvas-animation-appTests" */;
+			buildPhases = (
+				A32F71EA2CD1664A00A684A7 /* Sources */,
+				A32F71EB2CD1664A00A684A7 /* Frameworks */,
+				A32F71EC2CD1664A00A684A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A32F71F02CD1664A00A684A7 /* PBXTargetDependency */,
+			);
+			name = "canvas-animation-appTests";
+			productName = "canvas-animation-appTests";
+			productReference = A32F71EE2CD1664A00A684A7 /* canvas-animation-appTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A32F71F72CD1664A00A684A7 /* canvas-animation-appUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A32F72082CD1664A00A684A7 /* Build configuration list for PBXNativeTarget "canvas-animation-appUITests" */;
+			buildPhases = (
+				A32F71F42CD1664A00A684A7 /* Sources */,
+				A32F71F52CD1664A00A684A7 /* Frameworks */,
+				A32F71F62CD1664A00A684A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A32F71FA2CD1664A00A684A7 /* PBXTargetDependency */,
+			);
+			name = "canvas-animation-appUITests";
+			productName = "canvas-animation-appUITests";
+			productReference = A32F71F82CD1664A00A684A7 /* canvas-animation-appUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A32F71D02CD1664A00A684A7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					A32F71D72CD1664A00A684A7 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					A32F71ED2CD1664A00A684A7 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = A32F71D72CD1664A00A684A7;
+					};
+					A32F71F72CD1664A00A684A7 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = A32F71D72CD1664A00A684A7;
+					};
+				};
+			};
+			buildConfigurationList = A32F71D32CD1664A00A684A7 /* Build configuration list for PBXProject "canvas-animation-app" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A32F71CF2CD1664A00A684A7;
+			productRefGroup = A32F71D92CD1664A00A684A7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A32F71D72CD1664A00A684A7 /* canvas-animation-app */,
+				A32F71ED2CD1664A00A684A7 /* canvas-animation-appTests */,
+				A32F71F72CD1664A00A684A7 /* canvas-animation-appUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A32F71D62CD1664A00A684A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A32F71E52CD1664A00A684A7 /* Assets.xcassets in Resources */,
+				A32F71E82CD1664A00A684A7 /* Base in Resources */,
+				A32F71E32CD1664A00A684A7 /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A32F71EC2CD1664A00A684A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A32F71F62CD1664A00A684A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A32F71D42CD1664A00A684A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A32F71E02CD1664A00A684A7 /* ViewController.swift in Sources */,
+				A32F71DC2CD1664A00A684A7 /* AppDelegate.swift in Sources */,
+				A32F71DE2CD1664A00A684A7 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A32F71EA2CD1664A00A684A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A32F71F32CD1664A00A684A7 /* canvas_animation_appTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A32F71F42CD1664A00A684A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A32F71FD2CD1664A00A684A7 /* canvas_animation_appUITests.swift in Sources */,
+				A32F71FF2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A32F71F02CD1664A00A684A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A32F71D72CD1664A00A684A7 /* canvas-animation-app */;
+			targetProxy = A32F71EF2CD1664A00A684A7 /* PBXContainerItemProxy */;
+		};
+		A32F71FA2CD1664A00A684A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A32F71D72CD1664A00A684A7 /* canvas-animation-app */;
+			targetProxy = A32F71F92CD1664A00A684A7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A32F71E12CD1664A00A684A7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A32F71E22CD1664A00A684A7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A32F71E62CD1664A00A684A7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A32F71E72CD1664A00A684A7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A32F72002CD1664A00A684A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A32F72012CD1664A00A684A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A32F72032CD1664A00A684A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3W67AZM6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "canvas-animation-app/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.valerycrane.canvas-animation-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A32F72042CD1664A00A684A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3W67AZM6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "canvas-animation-app/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.valerycrane.canvas-animation-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A32F72062CD1664A00A684A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3W67AZM6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.valerycrane.canvas-animation-appTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/canvas-animation-app.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/canvas-animation-app";
+			};
+			name = Debug;
+		};
+		A32F72072CD1664A00A684A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3W67AZM6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.valerycrane.canvas-animation-appTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/canvas-animation-app.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/canvas-animation-app";
+			};
+			name = Release;
+		};
+		A32F72092CD1664A00A684A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3W67AZM6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.valerycrane.canvas-animation-appUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "canvas-animation-app";
+			};
+			name = Debug;
+		};
+		A32F720A2CD1664A00A684A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3W67AZM6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.valerycrane.canvas-animation-appUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "canvas-animation-app";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A32F71D32CD1664A00A684A7 /* Build configuration list for PBXProject "canvas-animation-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A32F72002CD1664A00A684A7 /* Debug */,
+				A32F72012CD1664A00A684A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A32F72022CD1664A00A684A7 /* Build configuration list for PBXNativeTarget "canvas-animation-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A32F72032CD1664A00A684A7 /* Debug */,
+				A32F72042CD1664A00A684A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A32F72052CD1664A00A684A7 /* Build configuration list for PBXNativeTarget "canvas-animation-appTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A32F72062CD1664A00A684A7 /* Debug */,
+				A32F72072CD1664A00A684A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A32F72082CD1664A00A684A7 /* Build configuration list for PBXNativeTarget "canvas-animation-appUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A32F72092CD1664A00A684A7 /* Debug */,
+				A32F720A2CD1664A00A684A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A32F71D02CD1664A00A684A7 /* Project object */;
+}
