@@ -15,6 +15,14 @@
 		A32F71F32CD1664A00A684A7 /* canvas_animation_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F71F22CD1664A00A684A7 /* canvas_animation_appTests.swift */; };
 		A32F71FD2CD1664A00A684A7 /* canvas_animation_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F71FC2CD1664A00A684A7 /* canvas_animation_appUITests.swift */; };
 		A32F71FF2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F71FE2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift */; };
+		A32F720D2CD16F9F00A684A7 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F720C2CD16F9F00A684A7 /* CanvasViewController.swift */; };
+		A32F72102CD1700700A684A7 /* CustomToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F720F2CD1700700A684A7 /* CustomToolBar.swift */; };
+		A32F72142CD1737800A684A7 /* CustomToolBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72132CD1737800A684A7 /* CustomToolBarItem.swift */; };
+		A32F72162CD17B4700A684A7 /* UIImage+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72152CD17B4700A684A7 /* UIImage+Resources.swift */; };
+		A32F721A2CD199C800A684A7 /* UIColor+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72192CD199C800A684A7 /* UIColor+Resources.swift */; };
+		A32F721C2CD19B2300A684A7 /* ColorPickerToolBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F721B2CD19B2300A684A7 /* ColorPickerToolBarItem.swift */; };
+		A32F721E2CD1A6BA00A684A7 /* ActionsToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F721D2CD1A6BA00A684A7 /* ActionsToolBar.swift */; };
+		A32F72202CD1A6CC00A684A7 /* DrawingToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F721F2CD1A6CC00A684A7 /* DrawingToolBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +55,14 @@
 		A32F71F82CD1664A00A684A7 /* canvas-animation-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "canvas-animation-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A32F71FC2CD1664A00A684A7 /* canvas_animation_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = canvas_animation_appUITests.swift; sourceTree = "<group>"; };
 		A32F71FE2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = canvas_animation_appUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A32F720C2CD16F9F00A684A7 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
+		A32F720F2CD1700700A684A7 /* CustomToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolBar.swift; sourceTree = "<group>"; };
+		A32F72132CD1737800A684A7 /* CustomToolBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolBarItem.swift; sourceTree = "<group>"; };
+		A32F72152CD17B4700A684A7 /* UIImage+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resources.swift"; sourceTree = "<group>"; };
+		A32F72192CD199C800A684A7 /* UIColor+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Resources.swift"; sourceTree = "<group>"; };
+		A32F721B2CD19B2300A684A7 /* ColorPickerToolBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerToolBarItem.swift; sourceTree = "<group>"; };
+		A32F721D2CD1A6BA00A684A7 /* ActionsToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsToolBar.swift; sourceTree = "<group>"; };
+		A32F721F2CD1A6CC00A684A7 /* DrawingToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingToolBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +113,8 @@
 		A32F71DA2CD1664A00A684A7 /* canvas-animation-app */ = {
 			isa = PBXGroup;
 			children = (
+				A32F720E2CD16FF300A684A7 /* UI */,
+				A32F720B2CD16F8B00A684A7 /* CanvasScreen */,
 				A32F71DB2CD1664A00A684A7 /* AppDelegate.swift */,
 				A32F71DD2CD1664A00A684A7 /* SceneDelegate.swift */,
 				A32F71DF2CD1664A00A684A7 /* ViewController.swift */,
@@ -122,6 +140,28 @@
 				A32F71FE2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift */,
 			);
 			path = "canvas-animation-appUITests";
+			sourceTree = "<group>";
+		};
+		A32F720B2CD16F8B00A684A7 /* CanvasScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A32F721D2CD1A6BA00A684A7 /* ActionsToolBar.swift */,
+				A32F721F2CD1A6CC00A684A7 /* DrawingToolBar.swift */,
+				A32F720C2CD16F9F00A684A7 /* CanvasViewController.swift */,
+			);
+			path = CanvasScreen;
+			sourceTree = "<group>";
+		};
+		A32F720E2CD16FF300A684A7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A32F720F2CD1700700A684A7 /* CustomToolBar.swift */,
+				A32F72132CD1737800A684A7 /* CustomToolBarItem.swift */,
+				A32F721B2CD19B2300A684A7 /* ColorPickerToolBarItem.swift */,
+				A32F72152CD17B4700A684A7 /* UIImage+Resources.swift */,
+				A32F72192CD199C800A684A7 /* UIColor+Resources.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,9 +294,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A32F721A2CD199C800A684A7 /* UIColor+Resources.swift in Sources */,
+				A32F720D2CD16F9F00A684A7 /* CanvasViewController.swift in Sources */,
+				A32F72162CD17B4700A684A7 /* UIImage+Resources.swift in Sources */,
 				A32F71E02CD1664A00A684A7 /* ViewController.swift in Sources */,
+				A32F72142CD1737800A684A7 /* CustomToolBarItem.swift in Sources */,
+				A32F721E2CD1A6BA00A684A7 /* ActionsToolBar.swift in Sources */,
+				A32F72202CD1A6CC00A684A7 /* DrawingToolBar.swift in Sources */,
 				A32F71DC2CD1664A00A684A7 /* AppDelegate.swift in Sources */,
+				A32F721C2CD19B2300A684A7 /* ColorPickerToolBarItem.swift in Sources */,
 				A32F71DE2CD1664A00A684A7 /* SceneDelegate.swift in Sources */,
+				A32F72102CD1700700A684A7 /* CustomToolBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
