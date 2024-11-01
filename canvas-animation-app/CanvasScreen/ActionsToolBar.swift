@@ -14,15 +14,15 @@ protocol ActionsToolBarDelegate: AnyObject {
 final class ActionsToolBar: CustomToolBar {
     weak var delegate: ActionsToolBarDelegate?
     
-    private let undoButton = CustomToolBarItem(image: .res.rightArrow)
-    private let redoButton = CustomToolBarItem(image: .res.leftArrow)
+    private let undoButton = ToolControl(image: .res.rightArrow)
+    private let redoButton = ToolControl(image: .res.leftArrow)
     
-    private let deleteButton = CustomToolBarItem(image: .res.bin)
-    private let addButton = CustomToolBarItem(image: .res.filePlus)
-    private let framesButton = CustomToolBarItem(image: .res.layers)
+    private let deleteButton = ToolControl(image: .res.bin)
+    private let addButton = ToolControl(image: .res.filePlus)
+    private let framesButton = ToolControl(image: .res.layers)
     
-    private let playButton = CustomToolBarItem(image: .res.play)
-    private let pauseButton = CustomToolBarItem(image: .res.pause)
+    private let playButton = ToolControl(image: .res.play)
+    private let pauseButton = ToolControl(image: .res.pause)
     
     init(delegate: ActionsToolBarDelegate? = nil) {
         self.delegate = delegate
@@ -68,37 +68,37 @@ final class ActionsToolBar: CustomToolBar {
     }
     
     @objc
-    private func didTapUndoButton(_ sender: CustomToolBarItem) {
+    private func didTapUndoButton(_ sender: ToolControl) {
         delegate?.actionsToolBarDidTapUndoButton(self)
     }
     
     @objc
-    private func didTapRedoButton(_ sender: CustomToolBarItem) {
+    private func didTapRedoButton(_ sender: ToolControl) {
         delegate?.actionsToolBarDidTapRedoButton(self)
     }
     
     @objc
-    private func didTapDeleteButton(_ sender: CustomToolBarItem) {
+    private func didTapDeleteButton(_ sender: ToolControl) {
         delegate?.actionsToolBarDidTapDeleteButton(self)
     }
     
     @objc
-    private func didTapAddButton(_ sender: CustomToolBarItem) {
+    private func didTapAddButton(_ sender: ToolControl) {
         delegate?.actionsToolBarDidTapAddButton(self)
     }
     
     @objc
-    private func didTapFramesButton(_ sender: CustomToolBarItem) {
+    private func didTapFramesButton(_ sender: ToolControl) {
         delegate?.actionsToolBarDidTapFramesButton(self)
     }
     
     @objc
-    private func didTapPlayButton(_ sender: CustomToolBarItem) {
+    private func didTapPlayButton(_ sender: ToolControl) {
         delegate?.actionsToolBarDidTapPlayButton(self)
     }
     
     @objc
-    private func didTapPauseButton(_ sender: CustomToolBarItem) {
+    private func didTapPauseButton(_ sender: ToolControl) {
         delegate?.actionsToolBarDidTapPauseButton(self)
     }
 }

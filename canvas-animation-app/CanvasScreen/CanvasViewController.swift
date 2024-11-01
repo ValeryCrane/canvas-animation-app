@@ -133,7 +133,15 @@ extension CanvasViewController: ActionsToolBarDelegate {
 }
 
 extension CanvasViewController: DrawingToolBarDelegate {
-    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectTool tool: DrawingToolBar.Tool?) {
+    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectTool tool: Tool?) {
+        // TODO
+    }
+    
+    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectColor color: UIColor) {
+        // TODO
+    }
+    
+    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSetStrokeWidth strokeWidth: CGFloat) {
         // TODO
     }
 }

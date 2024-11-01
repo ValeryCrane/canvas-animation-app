@@ -2,17 +2,9 @@ import Foundation
 import UIKit
 
 protocol DrawingToolBarDelegate: AnyObject {
-    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectTool tool: DrawingToolBar.Tool?)
-}
-
-extension DrawingToolBar {
-    enum Tool {
-        case pencil
-        case brush
-        case eraser
-        case instruments
-        case colorPicker
-    }
+    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectTool tool: Tool?)
+    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectColor color: UIColor)
+    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSetStrokeWidth strokeWidth: CGFloat)
 }
 
 extension DrawingToolBar {
@@ -25,18 +17,28 @@ extension DrawingToolBar {
 final class DrawingToolBar: CustomToolBar {
     weak var delegate: DrawingToolBarDelegate?
     
-    private let pencilButton = CustomToolBarItem(image: .res.pencil)
-    private let brushButton = CustomToolBarItem(image: .res.brush)
-    private let eraserButton = CustomToolBarItem(image: .res.eraser)
-    private let instrumentsButton = CustomToolBarItem(image: .res.instruments)
-    private let colorPickerButton: ColorPickerToolBarItem
+    private(set) var tool: Tool?
+    private(set) var color: UIColor
+    private(set) var strokeWidth: CGFloat
+    
+    private let pencilButton = ToolControl(image: .res.pencil)
+    private let brushButton = ToolControl(image: .res.brush)
+    private let eraserButton = ToolControl(image: .res.eraser)
+    private let instrumentsButton = ToolControl(image: .res.instruments)
+    private let colorPickerButton: ColorPickerControl
+    
+    private var isShapesContextMenuVisible: Bool = false
+    private var isColorsContextMenuVisible: Bool = false
     
     init(
-        initialColorPickerColor: UIColor,
+        initialColorPickerColor: UIColor = .res.paletteRed5,
+        initialStrokeWidth: CGFloat = 2,
         delegate: DrawingToolBarDelegate? = nil
     ) {
         self.delegate = delegate
         self.colorPickerButton = .init(color: initialColorPickerColor)
+        self.color = initialColorPickerColor
+        self.strokeWidth = initialStrokeWidth
         
         super.init(centerItems: [
             pencilButton, brushButton, eraserButton, instrumentsButton, colorPickerButton
@@ -51,24 +53,14 @@ final class DrawingToolBar: CustomToolBar {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func selectTool(_ tool: Tool) {
-        clearSelection()
+    func dismissContextMenusAndResetState() {
+        super.dismissContextMenus()
         
-        switch tool {
-        case .pencil:
-            pencilButton.isSelected = true
-        case .brush:
-            brushButton.isSelected = true
-        case .eraser:
-            eraserButton.isSelected = true
-        case .instruments:
-            instrumentsButton.isSelected = true
-        case .colorPicker:
-            colorPickerButton.isSelected = true
-        }
+        isShapesContextMenuVisible = false
+        isColorsContextMenuVisible = false
     }
     
-    func clearSelection() {
+    private func clearSelection() {
         [pencilButton, brushButton, eraserButton, instrumentsButton, colorPickerButton].forEach {
             $0.isSelected = false
         }
@@ -91,42 +83,83 @@ final class DrawingToolBar: CustomToolBar {
     }
     
     @objc
-    private func didTapPencilButton(_ sender: CustomToolBarItem) {
+    private func didTapPencilButton(_ sender: ToolControl) {
+        dismissContextMenusAndResetState()
+        clearSelection()
+        
         if !pencilButton.isSelected {
-            selectTool(.pencil)
+            tool = .pencil
+            pencilButton.isSelected = true
             delegate?.drawingToolBar(self, didSelectTool: .pencil)
         }
     }
     
     @objc
-    private func didTapBrushButton(_ sender: CustomToolBarItem) {
-        if !brushButton.isSelected {
-            selectTool(.brush)
-            delegate?.drawingToolBar(self, didSelectTool: .brush)
-        }
+    private func didTapBrushButton(_ sender: ToolControl) {
+        // TODO.
     }
     
     @objc
-    private func didTapEraserButton(_ sender: CustomToolBarItem) {
+    private func didTapEraserButton(_ sender: ToolControl) {
+        dismissContextMenusAndResetState()
+        clearSelection()
+        
         if !eraserButton.isSelected {
-            selectTool(.eraser)
+            tool = .eraser
+            eraserButton.isSelected = true
             delegate?.drawingToolBar(self, didSelectTool: .eraser)
         }
     }
     
     @objc
-    private func didTapInstrumentsButton(_ sender: CustomToolBarItem) {
-        if !instrumentsButton.isSelected {
-            selectTool(.instruments)
-            delegate?.drawingToolBar(self, didSelectTool: .instruments)
+    private func didTapInstrumentsButton(_ sender: ToolControl) {
+        guard !isShapesContextMenuVisible else { return }
+        
+        dismissContextMenusAndResetState()
+        colorPickerButton.isSelected = false
+        instrumentsButton.isSelected = true
+        
+        switch tool {
+        case .shape(let shape):
+            instrumentsButton.showContextMenu(ChooseShapeContextMenu(delegate: self, shape: shape))
+        default:
+            instrumentsButton.showContextMenu(ChooseShapeContextMenu(delegate: self))
         }
     }
     
     @objc
-    private func didTapColorPickerButton(_ sender: ColorPickerToolBarItem) {
-        if !colorPickerButton.isSelected {
-            selectTool(.colorPicker)
-            delegate?.drawingToolBar(self, didSelectTool: .colorPicker)
+    private func didTapColorPickerButton(_ sender: ColorPickerControl) {
+        guard !isColorsContextMenuVisible else { return }
+        
+        dismissContextMenusAndResetState()
+        switch tool {
+        case .shape(_):
+            break
+        default:
+            instrumentsButton.isSelected = false
         }
+        
+        colorPickerButton.isSelected = true
+        colorPickerButton.showContextMenu(ColorPickerContextMenu(delegate: self))
+    }
+}
+
+extension DrawingToolBar: ChooseShapeContextMenuDelegate {
+    func chooseShapeContextMenu(_ chooseShapeContextMenu: ChooseShapeContextMenu, didSelectShape shape: Tool.Shape) {
+        dismissContextMenusAndResetState()
+        clearSelection()
+        
+        instrumentsButton.isSelected = true
+        tool = .shape(shape)
+        delegate?.drawingToolBar(self, didSelectTool: .shape(shape))
+    }
+}
+
+extension DrawingToolBar: ColorPickerContextMenuDelegate {
+    func colorPickerContextMenu(_ colorPickerContextMenu: ColorPickerContextMenu, didPickColor color: UIColor) {
+        dismissContextMenusAndResetState()
+        colorPickerButton.isSelected = false
+        colorPickerButton.color = color
+        delegate?.drawingToolBar(self, didSelectColor: color)
     }
 }

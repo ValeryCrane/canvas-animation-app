@@ -17,12 +17,21 @@
 		A32F71FF2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F71FE2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift */; };
 		A32F720D2CD16F9F00A684A7 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F720C2CD16F9F00A684A7 /* CanvasViewController.swift */; };
 		A32F72102CD1700700A684A7 /* CustomToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F720F2CD1700700A684A7 /* CustomToolBar.swift */; };
-		A32F72142CD1737800A684A7 /* CustomToolBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72132CD1737800A684A7 /* CustomToolBarItem.swift */; };
+		A32F72142CD1737800A684A7 /* ToolControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72132CD1737800A684A7 /* ToolControl.swift */; };
 		A32F72162CD17B4700A684A7 /* UIImage+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72152CD17B4700A684A7 /* UIImage+Resources.swift */; };
 		A32F721A2CD199C800A684A7 /* UIColor+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72192CD199C800A684A7 /* UIColor+Resources.swift */; };
-		A32F721C2CD19B2300A684A7 /* ColorPickerToolBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F721B2CD19B2300A684A7 /* ColorPickerToolBarItem.swift */; };
+		A32F721C2CD19B2300A684A7 /* ColorPickerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F721B2CD19B2300A684A7 /* ColorPickerControl.swift */; };
 		A32F721E2CD1A6BA00A684A7 /* ActionsToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F721D2CD1A6BA00A684A7 /* ActionsToolBar.swift */; };
 		A32F72202CD1A6CC00A684A7 /* DrawingToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F721F2CD1A6CC00A684A7 /* DrawingToolBar.swift */; };
+		A32F72232CD2D04E00A684A7 /* UIView+contextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72222CD2D04E00A684A7 /* UIView+contextMenu.swift */; };
+		A32F722B2CD2E50F00A684A7 /* ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F722A2CD2E50F00A684A7 /* ContextMenu.swift */; };
+		A32F722D2CD2ED0500A684A7 /* ChooseShapeContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F722C2CD2ED0500A684A7 /* ChooseShapeContextMenu.swift */; };
+		A32F722F2CD3BF1600A684A7 /* ColorPickerContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F722E2CD3BF1600A684A7 /* ColorPickerContextMenu.swift */; };
+		A32F72312CD3F55100A684A7 /* ColorPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72302CD3F55100A684A7 /* ColorPickerCollectionViewCell.swift */; };
+		A32F72332CD3FF8300A684A7 /* ToolCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72322CD3FF8300A684A7 /* ToolCollectionViewCell.swift */; };
+		A32F72352CD40B4800A684A7 /* AutoSizingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72342CD40B4800A684A7 /* AutoSizingCollectionView.swift */; };
+		A32F72372CD44BAA00A684A7 /* FixedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72362CD44BAA00A684A7 /* FixedCollectionViewFlowLayout.swift */; };
+		A32F723A2CD467C800A684A7 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72392CD467C800A684A7 /* Tool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,12 +66,21 @@
 		A32F71FE2CD1664A00A684A7 /* canvas_animation_appUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = canvas_animation_appUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A32F720C2CD16F9F00A684A7 /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		A32F720F2CD1700700A684A7 /* CustomToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolBar.swift; sourceTree = "<group>"; };
-		A32F72132CD1737800A684A7 /* CustomToolBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolBarItem.swift; sourceTree = "<group>"; };
+		A32F72132CD1737800A684A7 /* ToolControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolControl.swift; sourceTree = "<group>"; };
 		A32F72152CD17B4700A684A7 /* UIImage+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resources.swift"; sourceTree = "<group>"; };
 		A32F72192CD199C800A684A7 /* UIColor+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Resources.swift"; sourceTree = "<group>"; };
-		A32F721B2CD19B2300A684A7 /* ColorPickerToolBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerToolBarItem.swift; sourceTree = "<group>"; };
+		A32F721B2CD19B2300A684A7 /* ColorPickerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerControl.swift; sourceTree = "<group>"; };
 		A32F721D2CD1A6BA00A684A7 /* ActionsToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsToolBar.swift; sourceTree = "<group>"; };
 		A32F721F2CD1A6CC00A684A7 /* DrawingToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingToolBar.swift; sourceTree = "<group>"; };
+		A32F72222CD2D04E00A684A7 /* UIView+contextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+contextMenu.swift"; sourceTree = "<group>"; };
+		A32F722A2CD2E50F00A684A7 /* ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenu.swift; sourceTree = "<group>"; };
+		A32F722C2CD2ED0500A684A7 /* ChooseShapeContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseShapeContextMenu.swift; sourceTree = "<group>"; };
+		A32F722E2CD3BF1600A684A7 /* ColorPickerContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerContextMenu.swift; sourceTree = "<group>"; };
+		A32F72302CD3F55100A684A7 /* ColorPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		A32F72322CD3FF8300A684A7 /* ToolCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCollectionViewCell.swift; sourceTree = "<group>"; };
+		A32F72342CD40B4800A684A7 /* AutoSizingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSizingCollectionView.swift; sourceTree = "<group>"; };
+		A32F72362CD44BAA00A684A7 /* FixedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		A32F72392CD467C800A684A7 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +131,7 @@
 		A32F71DA2CD1664A00A684A7 /* canvas-animation-app */ = {
 			isa = PBXGroup;
 			children = (
+				A32F72382CD467BD00A684A7 /* Models */,
 				A32F720E2CD16FF300A684A7 /* UI */,
 				A32F720B2CD16F8B00A684A7 /* CanvasScreen */,
 				A32F71DB2CD1664A00A684A7 /* AppDelegate.swift */,
@@ -155,13 +174,37 @@
 		A32F720E2CD16FF300A684A7 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A32F72212CD2CFB200A684A7 /* ContextMenu */,
 				A32F720F2CD1700700A684A7 /* CustomToolBar.swift */,
-				A32F72132CD1737800A684A7 /* CustomToolBarItem.swift */,
-				A32F721B2CD19B2300A684A7 /* ColorPickerToolBarItem.swift */,
+				A32F72132CD1737800A684A7 /* ToolControl.swift */,
+				A32F721B2CD19B2300A684A7 /* ColorPickerControl.swift */,
+				A32F72342CD40B4800A684A7 /* AutoSizingCollectionView.swift */,
+				A32F72362CD44BAA00A684A7 /* FixedCollectionViewFlowLayout.swift */,
 				A32F72152CD17B4700A684A7 /* UIImage+Resources.swift */,
 				A32F72192CD199C800A684A7 /* UIColor+Resources.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		A32F72212CD2CFB200A684A7 /* ContextMenu */ = {
+			isa = PBXGroup;
+			children = (
+				A32F72222CD2D04E00A684A7 /* UIView+contextMenu.swift */,
+				A32F722A2CD2E50F00A684A7 /* ContextMenu.swift */,
+				A32F722C2CD2ED0500A684A7 /* ChooseShapeContextMenu.swift */,
+				A32F722E2CD3BF1600A684A7 /* ColorPickerContextMenu.swift */,
+				A32F72302CD3F55100A684A7 /* ColorPickerCollectionViewCell.swift */,
+				A32F72322CD3FF8300A684A7 /* ToolCollectionViewCell.swift */,
+			);
+			path = ContextMenu;
+			sourceTree = "<group>";
+		};
+		A32F72382CD467BD00A684A7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A32F72392CD467C800A684A7 /* Tool.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,15 +339,24 @@
 			files = (
 				A32F721A2CD199C800A684A7 /* UIColor+Resources.swift in Sources */,
 				A32F720D2CD16F9F00A684A7 /* CanvasViewController.swift in Sources */,
+				A32F72312CD3F55100A684A7 /* ColorPickerCollectionViewCell.swift in Sources */,
+				A32F723A2CD467C800A684A7 /* Tool.swift in Sources */,
+				A32F722B2CD2E50F00A684A7 /* ContextMenu.swift in Sources */,
 				A32F72162CD17B4700A684A7 /* UIImage+Resources.swift in Sources */,
 				A32F71E02CD1664A00A684A7 /* ViewController.swift in Sources */,
-				A32F72142CD1737800A684A7 /* CustomToolBarItem.swift in Sources */,
+				A32F72142CD1737800A684A7 /* ToolControl.swift in Sources */,
+				A32F722D2CD2ED0500A684A7 /* ChooseShapeContextMenu.swift in Sources */,
 				A32F721E2CD1A6BA00A684A7 /* ActionsToolBar.swift in Sources */,
 				A32F72202CD1A6CC00A684A7 /* DrawingToolBar.swift in Sources */,
 				A32F71DC2CD1664A00A684A7 /* AppDelegate.swift in Sources */,
-				A32F721C2CD19B2300A684A7 /* ColorPickerToolBarItem.swift in Sources */,
+				A32F721C2CD19B2300A684A7 /* ColorPickerControl.swift in Sources */,
+				A32F72332CD3FF8300A684A7 /* ToolCollectionViewCell.swift in Sources */,
+				A32F722F2CD3BF1600A684A7 /* ColorPickerContextMenu.swift in Sources */,
 				A32F71DE2CD1664A00A684A7 /* SceneDelegate.swift in Sources */,
+				A32F72352CD40B4800A684A7 /* AutoSizingCollectionView.swift in Sources */,
+				A32F72232CD2D04E00A684A7 /* UIView+contextMenu.swift in Sources */,
 				A32F72102CD1700700A684A7 /* CustomToolBar.swift in Sources */,
+				A32F72372CD44BAA00A684A7 /* FixedCollectionViewFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

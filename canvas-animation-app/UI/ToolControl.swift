@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-final class CustomToolBarItem: UIControl {
+final class ToolControl: UIControl {
     private let imageView = UIImageView()
     
     override var isEnabled: Bool {

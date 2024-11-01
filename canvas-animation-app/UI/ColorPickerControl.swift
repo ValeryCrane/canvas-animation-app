@@ -1,13 +1,13 @@
 import Foundation
 import UIKit
 
-extension ColorPickerToolBarItem {
+extension ColorPickerControl {
     private enum Constants {
         static let selectedBorderWidth: CGFloat = 1.5
     }
 }
 
-final class ColorPickerToolBarItem: UIControl {
+final class ColorPickerControl: UIControl {
     var color: UIColor {
         didSet {
             iconLayer.backgroundColor = color.cgColor

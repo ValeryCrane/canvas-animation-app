@@ -14,5 +14,11 @@ extension UIImage {
         static let brush: UIImage = .init(named: "brush")!
         static let eraser: UIImage = .init(named: "eraser")!
         static let instruments: UIImage = .init(named: "instruments")!
+        static let palette: UIImage = .init(named: "palette")!
+        
+        static let square: UIImage = .init(named: "square")!
+        static let circle: UIImage = .init(named: "circle")!
+        static let triangle: UIImage = .init(named: "triangle")!
+        static let arrowUp: UIImage = .init(named: "arrow_up")!
     }
 }
