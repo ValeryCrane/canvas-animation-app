@@ -31,7 +31,11 @@
 		A32F72332CD3FF8300A684A7 /* ToolCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72322CD3FF8300A684A7 /* ToolCollectionViewCell.swift */; };
 		A32F72352CD40B4800A684A7 /* AutoSizingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72342CD40B4800A684A7 /* AutoSizingCollectionView.swift */; };
 		A32F72372CD44BAA00A684A7 /* FixedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72362CD44BAA00A684A7 /* FixedCollectionViewFlowLayout.swift */; };
-		A32F723A2CD467C800A684A7 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F72392CD467C800A684A7 /* Tool.swift */; };
+		A32F723C2CD47D2600A684A7 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F723B2CD47D2600A684A7 /* CanvasView.swift */; };
+		A352D1B42CD5A94A00349266 /* DrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352D1B02CD5A94A00349266 /* DrawingTool.swift */; };
+		A352D1B52CD5A94A00349266 /* EraserDrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352D1B12CD5A94A00349266 /* EraserDrawingTool.swift */; };
+		A352D1B62CD5A94A00349266 /* PencilDrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352D1B22CD5A94A00349266 /* PencilDrawingTool.swift */; };
+		A352D1B82CD5B8F500349266 /* CanvasBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352D1B72CD5B8F500349266 /* CanvasBackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +84,11 @@
 		A32F72322CD3FF8300A684A7 /* ToolCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCollectionViewCell.swift; sourceTree = "<group>"; };
 		A32F72342CD40B4800A684A7 /* AutoSizingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSizingCollectionView.swift; sourceTree = "<group>"; };
 		A32F72362CD44BAA00A684A7 /* FixedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		A32F72392CD467C800A684A7 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
+		A32F723B2CD47D2600A684A7 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		A352D1B02CD5A94A00349266 /* DrawingTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingTool.swift; sourceTree = "<group>"; };
+		A352D1B12CD5A94A00349266 /* EraserDrawingTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EraserDrawingTool.swift; sourceTree = "<group>"; };
+		A352D1B22CD5A94A00349266 /* PencilDrawingTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PencilDrawingTool.swift; sourceTree = "<group>"; };
+		A352D1B72CD5B8F500349266 /* CanvasBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasBackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +139,6 @@
 		A32F71DA2CD1664A00A684A7 /* canvas-animation-app */ = {
 			isa = PBXGroup;
 			children = (
-				A32F72382CD467BD00A684A7 /* Models */,
 				A32F720E2CD16FF300A684A7 /* UI */,
 				A32F720B2CD16F8B00A684A7 /* CanvasScreen */,
 				A32F71DB2CD1664A00A684A7 /* AppDelegate.swift */,
@@ -164,6 +171,7 @@
 		A32F720B2CD16F8B00A684A7 /* CanvasScreen */ = {
 			isa = PBXGroup;
 			children = (
+				A32F723D2CD4802E00A684A7 /* Canvas */,
 				A32F721D2CD1A6BA00A684A7 /* ActionsToolBar.swift */,
 				A32F721F2CD1A6CC00A684A7 /* DrawingToolBar.swift */,
 				A32F720C2CD16F9F00A684A7 /* CanvasViewController.swift */,
@@ -199,12 +207,24 @@
 			path = ContextMenu;
 			sourceTree = "<group>";
 		};
-		A32F72382CD467BD00A684A7 /* Models */ = {
+		A32F723D2CD4802E00A684A7 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
-				A32F72392CD467C800A684A7 /* Tool.swift */,
+				A352D1B32CD5A94A00349266 /* DrawingTools */,
+				A32F723B2CD47D2600A684A7 /* CanvasView.swift */,
+				A352D1B72CD5B8F500349266 /* CanvasBackgroundView.swift */,
 			);
-			path = Models;
+			path = Canvas;
+			sourceTree = "<group>";
+		};
+		A352D1B32CD5A94A00349266 /* DrawingTools */ = {
+			isa = PBXGroup;
+			children = (
+				A352D1B02CD5A94A00349266 /* DrawingTool.swift */,
+				A352D1B12CD5A94A00349266 /* EraserDrawingTool.swift */,
+				A352D1B22CD5A94A00349266 /* PencilDrawingTool.swift */,
+			);
+			path = DrawingTools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,16 +360,20 @@
 				A32F721A2CD199C800A684A7 /* UIColor+Resources.swift in Sources */,
 				A32F720D2CD16F9F00A684A7 /* CanvasViewController.swift in Sources */,
 				A32F72312CD3F55100A684A7 /* ColorPickerCollectionViewCell.swift in Sources */,
-				A32F723A2CD467C800A684A7 /* Tool.swift in Sources */,
 				A32F722B2CD2E50F00A684A7 /* ContextMenu.swift in Sources */,
+				A352D1B42CD5A94A00349266 /* DrawingTool.swift in Sources */,
 				A32F72162CD17B4700A684A7 /* UIImage+Resources.swift in Sources */,
 				A32F71E02CD1664A00A684A7 /* ViewController.swift in Sources */,
 				A32F72142CD1737800A684A7 /* ToolControl.swift in Sources */,
+				A32F723C2CD47D2600A684A7 /* CanvasView.swift in Sources */,
 				A32F722D2CD2ED0500A684A7 /* ChooseShapeContextMenu.swift in Sources */,
 				A32F721E2CD1A6BA00A684A7 /* ActionsToolBar.swift in Sources */,
 				A32F72202CD1A6CC00A684A7 /* DrawingToolBar.swift in Sources */,
 				A32F71DC2CD1664A00A684A7 /* AppDelegate.swift in Sources */,
 				A32F721C2CD19B2300A684A7 /* ColorPickerControl.swift in Sources */,
+				A352D1B52CD5A94A00349266 /* EraserDrawingTool.swift in Sources */,
+				A352D1B62CD5A94A00349266 /* PencilDrawingTool.swift in Sources */,
+				A352D1B82CD5B8F500349266 /* CanvasBackgroundView.swift in Sources */,
 				A32F72332CD3FF8300A684A7 /* ToolCollectionViewCell.swift in Sources */,
 				A32F722F2CD3BF1600A684A7 /* ColorPickerContextMenu.swift in Sources */,
 				A32F71DE2CD1664A00A684A7 /* SceneDelegate.swift in Sources */,

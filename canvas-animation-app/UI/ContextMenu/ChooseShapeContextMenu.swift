@@ -3,8 +3,30 @@ import UIKit
 
 protocol ChooseShapeContextMenuDelegate: AnyObject {
     func chooseShapeContextMenu(
-        _ chooseShapeContextMenu: ChooseShapeContextMenu, didSelectShape shape: Tool.Shape
+        _ chooseShapeContextMenu: ChooseShapeContextMenu, didSelectShape shape: ChooseShapeContextMenu.Shape
     )
+}
+
+extension ChooseShapeContextMenu {
+    enum Shape: CaseIterable {
+        case square
+        case circle
+        case triangle
+        case arrow
+        
+        func image() -> UIImage {
+            switch self {
+            case .square:
+                    .res.square
+            case .circle:
+                    .res.circle
+            case .triangle:
+                    .res.triangle
+            case .arrow:
+                    .res.arrowUp
+            }
+        }
+    }
 }
 
 extension ChooseShapeContextMenu {
@@ -23,10 +45,10 @@ extension ChooseShapeContextMenu {
 final class ChooseShapeContextMenu: UIVisualEffectView {
     weak var delegate: ChooseShapeContextMenuDelegate?
     
-    var shape: Tool.Shape?
+    var shape: Shape?
     
     private lazy var collectionView: UICollectionView = {
-        let flowLayout = FixedCollectionViewFlowLayout(numberOfColumns: Tool.Shape.allCases.count)
+        let flowLayout = FixedCollectionViewFlowLayout(numberOfColumns: Shape.allCases.count)
         flowLayout.itemSize = .init(width: Constants.shapeButtonWidth, height: Constants.shapeButtonHeight)
         flowLayout.minimumInteritemSpacing = Constants.shapesSpacing
         flowLayout.minimumLineSpacing = Constants.shapesSpacing
@@ -50,7 +72,7 @@ final class ChooseShapeContextMenu: UIVisualEffectView {
         return collectionView
     }()
     
-    init(delegate: ChooseShapeContextMenuDelegate? = nil, shape: Tool.Shape? = nil) {
+    init(delegate: ChooseShapeContextMenuDelegate? = nil, shape: Shape? = nil) {
         self.delegate = delegate
         self.shape = shape
         
@@ -108,13 +130,13 @@ extension ChooseShapeContextMenu: ContextMenu {
 
 extension ChooseShapeContextMenu: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.chooseShapeContextMenu(self, didSelectShape: Tool.Shape.allCases[indexPath.row])
+        delegate?.chooseShapeContextMenu(self, didSelectShape: Shape.allCases[indexPath.row])
     }
 }
 
 extension ChooseShapeContextMenu: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        Tool.Shape.allCases.count
+        Shape.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -122,7 +144,7 @@ extension ChooseShapeContextMenu: UICollectionViewDataSource {
             withReuseIdentifier: ToolCollectionViewCell.reuseIdentifier, for: indexPath
         ) as? ToolCollectionViewCell
         
-        cell?.setup(image: Tool.Shape.allCases[indexPath.row].image())
+        cell?.setup(image: Shape.allCases[indexPath.row].image())
         return cell ?? UICollectionViewCell()
     }
 }

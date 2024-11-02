@@ -30,16 +30,20 @@ final class CanvasViewController: UIViewController {
     }()
     
     private lazy var drawingToolBar = DrawingToolBar(
-        initialColorPickerColor: .res.paletteBlue5,
+        initialStrokeColor: .res.paletteBlue5,
+        initialStrokeWidth: 5,
         delegate: self
     )
     
-    private let canvasView = UIView()
+    private let canvasView = CanvasView()
+    private let canvasBackgroundView = CanvasBackgroundView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .black
+        canvasView.delegate = self
+        
         layoutActionsToolBar()
         layoutDrawingToolBar()
         layoutCanvasView()
@@ -80,35 +84,42 @@ final class CanvasViewController: UIViewController {
     }
     
     private func layoutCanvasView() {
-        view.addSubview(canvasView)
+        view.addSubview(canvasBackgroundView)
+        canvasBackgroundView.addSubview(canvasView)
         canvasView.translatesAutoresizingMaskIntoConstraints = false
-        canvasView.layer.cornerRadius = Constants.canvasViewCornerRadius
-        canvasView.backgroundColor = .white
+        canvasBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        canvasBackgroundView.layer.cornerRadius = Constants.canvasViewCornerRadius
+        canvasBackgroundView.clipsToBounds = true
         
         NSLayoutConstraint.activate([
-            canvasView.topAnchor.constraint(
+            canvasBackgroundView.topAnchor.constraint(
                 equalTo: actionsToolBar.bottomAnchor, constant: Constants.canvasViewTopMargin
             ),
-            canvasView.leadingAnchor.constraint(
+            canvasBackgroundView.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor, constant: Constants.canvasViewSideMargin
             ),
-            canvasView.trailingAnchor.constraint(
+            canvasBackgroundView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor, constant: -Constants.canvasViewSideMargin
             ),
-            canvasView.bottomAnchor.constraint(
+            canvasBackgroundView.bottomAnchor.constraint(
                 equalTo: drawingToolBar.topAnchor, constant: -Constants.canvasViewBottomMargin
-            )
+            ),
+            
+            canvasView.topAnchor.constraint(equalTo: canvasBackgroundView.topAnchor),
+            canvasView.leadingAnchor.constraint(equalTo: canvasBackgroundView.leadingAnchor),
+            canvasView.trailingAnchor.constraint(equalTo: canvasBackgroundView.trailingAnchor),
+            canvasView.bottomAnchor.constraint(equalTo: canvasBackgroundView.bottomAnchor)
         ])
     }
 }
 
 extension CanvasViewController: ActionsToolBarDelegate {
     func actionsToolBarDidTapUndoButton(_ actionsToolBar: ActionsToolBar) {
-        // TODO
+        canvasView.undo()
     }
     
     func actionsToolBarDidTapRedoButton(_ actionsToolBar: ActionsToolBar) {
-        // TODO
+        canvasView.redo()
     }
     
     func actionsToolBarDidTapDeleteButton(_ actionsToolBar: ActionsToolBar) {
@@ -133,8 +144,8 @@ extension CanvasViewController: ActionsToolBarDelegate {
 }
 
 extension CanvasViewController: DrawingToolBarDelegate {
-    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectTool tool: Tool?) {
-        // TODO
+    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectTool tool: (any DrawingTool)?) {
+        canvasView.currentTool = tool
     }
     
     func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectColor color: UIColor) {
@@ -143,5 +154,15 @@ extension CanvasViewController: DrawingToolBarDelegate {
     
     func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSetStrokeWidth strokeWidth: CGFloat) {
         // TODO
+    }
+}
+
+extension CanvasViewController: CanvasViewDelegate {
+    func canvasView(_ canvasView: CanvasView, updateIsUndoEnabled isUndoEnabled: Bool) {
+        actionsToolBar.setIsUndoButtonEnabled(isUndoEnabled)
+    }
+    
+    func canvasView(_ canvasView: CanvasView, updateIsRedoEnabled isRedoEnabled: Bool) {
+        actionsToolBar.setIsRedoButtonEnabled(isRedoEnabled)
     }
 }
