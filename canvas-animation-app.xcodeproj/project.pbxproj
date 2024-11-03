@@ -228,11 +228,6 @@
 			children = (
 				A352D1BF2CD5D3D000349266 /* AnimationFrame.swift */,
 				A352D1CD2CD7BFD900349266 /* UI */,
-				A32F720F2CD1700700A684A7 /* CustomToolBar.swift */,
-				A32F72132CD1737800A684A7 /* ToolButton.swift */,
-				A32F721B2CD19B2300A684A7 /* ColorPickerControl.swift */,
-				A32F72342CD40B4800A684A7 /* AutoSizingCollectionView.swift */,
-				A32F72362CD44BAA00A684A7 /* FixedCollectionViewFlowLayout.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -242,6 +237,11 @@
 			children = (
 				A352D1D22CD7E6FA00349266 /* Extensions */,
 				A352D1CE2CD7C00900349266 /* ContextMenu */,
+				A32F720F2CD1700700A684A7 /* CustomToolBar.swift */,
+				A32F72132CD1737800A684A7 /* ToolButton.swift */,
+				A32F721B2CD19B2300A684A7 /* ColorPickerControl.swift */,
+				A32F72342CD40B4800A684A7 /* AutoSizingCollectionView.swift */,
+				A32F72362CD44BAA00A684A7 /* FixedCollectionViewFlowLayout.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
