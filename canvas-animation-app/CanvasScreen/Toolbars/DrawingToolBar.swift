@@ -54,10 +54,10 @@ extension DrawingToolBar {
 final class DrawingToolBar: CustomToolBar {
     weak var delegate: DrawingToolBarDelegate?
     
-    private let pencilButton = ToolControl(image: .res.pencil)
-    private let brushButton = ToolControl(image: .res.brush)
-    private let eraserButton = ToolControl(image: .res.eraser)
-    private let instrumentsButton = ToolControl(image: .res.instruments)
+    private let pencilButton = ToolButton(image: .res.pencil)
+    private let brushButton = ToolButton(image: .res.brush)
+    private let eraserButton = ToolButton(image: .res.eraser)
+    private let instrumentsButton = ToolButton(image: .res.instruments)
     private let colorPickerButton: ColorPickerControl
     
     private var isShapesContextMenuVisible: Bool = false
@@ -108,6 +108,15 @@ final class DrawingToolBar: CustomToolBar {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setIsEnabled(_ isEnabled: Bool) {
+        [pencilButton, brushButton, eraserButton, 
+         instrumentsButton, colorPickerButton].forEach { button in
+            button.isEnabled = isEnabled
+        }
+        
+        dismissContextMenusAndResetState()
     }
     
     private func dismissContextMenusAndResetState() {
@@ -167,7 +176,7 @@ final class DrawingToolBar: CustomToolBar {
     }
     
     @objc
-    private func didTapPencilButton(_ sender: ToolControl) {
+    private func didTapPencilButton(_ sender: ToolButton) {
         dismissContextMenusAndResetState()
         clearSelection()
         
@@ -178,12 +187,12 @@ final class DrawingToolBar: CustomToolBar {
     }
     
     @objc
-    private func didTapBrushButton(_ sender: ToolControl) {
+    private func didTapBrushButton(_ sender: ToolButton) {
         // TODO.
     }
     
     @objc
-    private func didTapEraserButton(_ sender: ToolControl) {
+    private func didTapEraserButton(_ sender: ToolButton) {
         dismissContextMenusAndResetState()
         clearSelection()
         
@@ -194,7 +203,7 @@ final class DrawingToolBar: CustomToolBar {
     }
     
     @objc
-    private func didTapInstrumentsButton(_ sender: ToolControl) {
+    private func didTapInstrumentsButton(_ sender: ToolButton) {
         guard !isShapesContextMenuVisible else { return }
         
         dismissContextMenusAndResetState()

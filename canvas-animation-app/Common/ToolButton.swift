@@ -1,8 +1,8 @@
 import Foundation
 import UIKit
 
-final class ToolControl: UIControl {
-    private let imageView = UIImageView()
+final class ToolButton: UIButton {
+    private let iconView = UIImageView()
     
     override var isEnabled: Bool {
         didSet {
@@ -17,20 +17,15 @@ final class ToolControl: UIControl {
     }
     
     override var intrinsicContentSize: CGSize {
-        imageView.image?.size ?? .zero
+        iconView.image?.size ?? .zero
     }
     
     init(image: UIImage) {
-        self.imageView.image = image
+        self.iconView.image = image
         
         super.init(frame: .zero)
         
-        let tapGestureRecognizer = UITapGestureRecognizer(
-            target: self, action: #selector(onTapGesture(_:))
-        )
-        
-        addGestureRecognizer(tapGestureRecognizer)
-        addSubview(imageView)
+        addSubview(iconView)
         updateTintColor()
     }
     
@@ -42,25 +37,18 @@ final class ToolControl: UIControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        imageView.frame = bounds
-    }
-    
-    @objc
-    private func onTapGesture(_ sender: UITapGestureRecognizer) {
-        if isEnabled {
-            sendActions(for: .touchUpInside)
-        }
+        iconView.frame = bounds
     }
     
     private func updateTintColor() {
         if isEnabled {
             if isSelected {
-                imageView.tintColor = .res.toolSelected
+                iconView.tintColor = .res.toolSelected
             } else {
-                imageView.tintColor = .res.tool
+                iconView.tintColor = .res.tool
             }
         } else {
-            imageView.tintColor = .res.toolDisabled
+            iconView.tintColor = .res.toolDisabled
         }
     }
 }

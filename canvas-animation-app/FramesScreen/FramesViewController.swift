@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 final class FramesViewController: UIViewController {
-    private let frames: [Frame]
+    private let frames: [AnimationFrame]
     private let selectedIndex: Int
     private let onFrameSelected: ((Int) -> Void)?
     
@@ -24,7 +24,7 @@ final class FramesViewController: UIViewController {
         return collectionView
     }()
     
-    init(frames: [Frame], selectedIndex: Int, onFrameSelected: ((Int) -> Void)? = nil) {
+    init(frames: [AnimationFrame], selectedIndex: Int, onFrameSelected: ((Int) -> Void)? = nil) {
         self.frames = frames
         self.selectedIndex = selectedIndex
         self.onFrameSelected = onFrameSelected

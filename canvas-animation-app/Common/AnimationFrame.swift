@@ -1,6 +1,6 @@
 import Foundation
 
-struct Frame {
+struct AnimationFrame {
     let size: CGSize
     let strokesMaxIndex: Int
     let strokes: [DrawingToolStroke]

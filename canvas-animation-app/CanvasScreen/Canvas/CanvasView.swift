@@ -4,7 +4,7 @@ import UIKit
 protocol CanvasViewDelegate: AnyObject {
     func canvasView(_ canvasView: CanvasView, updateIsUndoEnabled isUndoEnabled: Bool)
     func canvasView(_ canvasView: CanvasView, updateIsRedoEnabled isRedoEnabled: Bool)
-    func canvasView(_ canvasView: CanvasView, didUpdateFrame frame: Frame)
+    func canvasView(_ canvasView: CanvasView, didAlterFrame frame: AnimationFrame)
 }
 
 final class CanvasView: UIView {
@@ -35,6 +35,9 @@ final class CanvasView: UIView {
     private var strokesMaxIndex = 0
     private var strokes: [DrawingToolStroke] = []
     
+    private var underlyingStrokesMaxIndex: Int?
+    private var underlyingStrokes: [DrawingToolStroke]?
+    
     init() {
         isUndoEnabled = false
         isRedoEnabled = false
@@ -55,6 +58,15 @@ final class CanvasView: UIView {
         
         guard let context = UIGraphicsGetCurrentContext() else { return }
         
+        if let underlyingStrokes, let underlyingStrokesMaxIndex {
+            // TODO. Вынести куда-то в константы
+            context.setAlpha(0.3)
+            for i in 0 ..< underlyingStrokesMaxIndex {
+                underlyingStrokes[i].draw(inContext: context)
+            }
+            context.setAlpha(1)
+        }
+        
         for i in 0 ..< strokesMaxIndex {
             strokes[i].draw(inContext: context)
         }
@@ -69,7 +81,7 @@ final class CanvasView: UIView {
         updateUndoAndRedoStates()
         setNeedsDisplay()
         
-        delegate?.canvasView(self, didUpdateFrame: getFrame())
+        delegate?.canvasView(self, didAlterFrame: getFrame())
     }
     
     func redo() {
@@ -79,10 +91,10 @@ final class CanvasView: UIView {
         updateUndoAndRedoStates()
         setNeedsDisplay()
         
-        delegate?.canvasView(self, didUpdateFrame: getFrame())
+        delegate?.canvasView(self, didAlterFrame: getFrame())
     }
     
-    func getFrame() -> Frame {
+    func getFrame() -> AnimationFrame {
         .init(
             size: frame.size,
             strokesMaxIndex: strokesMaxIndex,
@@ -90,14 +102,13 @@ final class CanvasView: UIView {
         )
     }
     
-    func setFrame(_ frame: Frame) {
-        guard frame.size == self.frame.size else {
-            print("Несовпадающие размеры фрейма:(")
-            return
-        }
-        
+    func setFrame(_ frame: AnimationFrame, underlyingFrame: AnimationFrame?) {
         strokesMaxIndex = frame.strokesMaxIndex
         strokes = frame.strokes
+        
+        underlyingStrokesMaxIndex = underlyingFrame?.strokesMaxIndex
+        underlyingStrokes = underlyingFrame?.strokes
+        
         updateUndoAndRedoStates()
         setNeedsDisplay()
     }
@@ -140,6 +151,6 @@ extension CanvasView: DrawingToolDelegate {
         strokesMaxIndex = strokes.count
         
         updateUndoAndRedoStates()
-        delegate?.canvasView(self, didUpdateFrame: getFrame())
+        delegate?.canvasView(self, didAlterFrame: getFrame())
     }
 }

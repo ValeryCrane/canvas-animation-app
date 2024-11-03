@@ -3,7 +3,7 @@ import UIKit
 
 final class CanvasAnimationView: UIView {
     private var fps: Int?
-    private var frames: [Frame]?
+    private var frames: [AnimationFrame]?
     
     private var displayLink: CADisplayLink?
     private var startTime: CFTimeInterval?
@@ -37,7 +37,7 @@ final class CanvasAnimationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func startAnimation(frames: [Frame], fps: Int) {
+    func startAnimation(frames: [AnimationFrame], fps: Int) {
         self.frames = frames
         self.fps = fps
         

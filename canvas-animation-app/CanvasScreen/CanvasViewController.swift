@@ -18,14 +18,14 @@ extension CanvasViewController {
 }
 
 final class CanvasViewController: UIViewController {
-    var model: CanvasModelInput
+    private var model: CanvasModelInput
     
     private lazy var actionsToolBar: ActionsToolBar = {
         let actionsToolBar = ActionsToolBar(delegate: self)
         actionsToolBar.setIsUndoButtonEnabled(false)
         actionsToolBar.setIsRedoButtonEnabled(false)
         actionsToolBar.setIsPauseButtonEnabled(false)
-        actionsToolBar.setIsDeleteButtonEnabled(false)
+        actionsToolBar.setIsDeleteFrameButtonEnabled(false)
         
         return actionsToolBar
     }()
@@ -41,6 +41,8 @@ final class CanvasViewController: UIViewController {
     
     private let animationView = CanvasAnimationView()
     private let animationBackgroundView = CanvasBackgroundView()
+    
+    private var areCanvasToolsEnabled: Bool = true
     
     init(model: CanvasModelInput) {
         self.model = model
@@ -157,6 +159,68 @@ final class CanvasViewController: UIViewController {
     }
 }
 
+extension CanvasViewController: CanvasModelOutput {
+    func getCurrentFrame() -> AnimationFrame {
+        canvasView.getFrame()
+    }
+    
+    func changeFrame(frame: AnimationFrame, undelyingFrame: AnimationFrame?) {
+        canvasView.setFrame(frame, underlyingFrame: undelyingFrame)
+    }
+    
+    func startAnimation(frames: [AnimationFrame], fps: Int) {
+        animationBackgroundView.isHidden = false
+        animationView.startAnimation(frames: frames, fps: fps)
+    }
+    
+    func endAnimation() {
+        animationBackgroundView.isHidden = true
+        animationView.endAnimation()
+    }
+    
+    func setIsDeleteButtonEnabled(_ isEnabled: Bool) {
+        actionsToolBar.setIsDeleteFrameButtonEnabled(isEnabled)
+    }
+    
+    func setIsAddFrameButtonEnabled(_ isEnabled: Bool) {
+        actionsToolBar.setIsAddFrameButtonEnabled(isEnabled)
+    }
+    
+    func setIsFramesButtonEnabled(_ isEnabled: Bool) {
+        actionsToolBar.setIsFramesButtonEnabled(isEnabled)
+    }
+    
+    func setIsPlayButtonEnabled(_ isEnabled: Bool) {
+        actionsToolBar.setIsPlayButtonEnabled(isEnabled)
+    }
+    
+    func setIsPauseButtonEnabled(_ isEnabled: Bool) {
+        actionsToolBar.setIsPauseButtonEnabled(isEnabled)
+    }
+    
+    func setAreCanvasToolsEnabled(_ areEnabled: Bool) {
+        areCanvasToolsEnabled = areEnabled
+        
+        actionsToolBar.setIsUndoButtonEnabled(canvasView.isUndoEnabled && areCanvasToolsEnabled)
+        actionsToolBar.setIsRedoButtonEnabled(canvasView.isRedoEnabled && areCanvasToolsEnabled)
+        drawingToolBar.setIsEnabled(areCanvasToolsEnabled)
+    }
+}
+
+extension CanvasViewController: CanvasViewDelegate {
+    func canvasView(_ canvasView: CanvasView, didAlterFrame frame: AnimationFrame) {
+        model.didAlterCurrentFrame(frame: frame)
+    }
+    
+    func canvasView(_ canvasView: CanvasView, updateIsUndoEnabled isUndoEnabled: Bool) {
+        actionsToolBar.setIsUndoButtonEnabled(isUndoEnabled && areCanvasToolsEnabled)
+    }
+    
+    func canvasView(_ canvasView: CanvasView, updateIsRedoEnabled isRedoEnabled: Bool) {
+        actionsToolBar.setIsRedoButtonEnabled(isRedoEnabled && areCanvasToolsEnabled)
+    }
+}
+
 extension CanvasViewController: ActionsToolBarDelegate {
     func actionsToolBarDidTapUndoButton(_ actionsToolBar: ActionsToolBar) {
         canvasView.undo()
@@ -166,12 +230,55 @@ extension CanvasViewController: ActionsToolBarDelegate {
         canvasView.redo()
     }
     
-    func actionsToolBarDidTapDeleteButton(_ actionsToolBar: ActionsToolBar) {
-        model.didTapDeleteButton()
+    func actionsToolBarDidTapDeleteFrameButton(_ actionsToolBar: ActionsToolBar) {
+        model.didTapDeleteFrameButton()
     }
     
-    func actionsToolBarDidTapAddButton(_ actionsToolBar: ActionsToolBar) {
-        model.didTapAddButton()
+    func actionsToolBarDidTapDeleteAllFramesButton(_ actionsToolBar: ActionsToolBar) {
+        model.didTapDeleteAllFramesButton()
+    }
+    
+    func actionsToolBarDidTapAddFrameButton(_ actionsToolBar: ActionsToolBar) {
+        model.didTapAddFrameButton()
+    }
+    
+    func actionsToolBarDidTapDuplicateFrameButton(_ actionsToolBar: ActionsToolBar) {
+        model.didTapDuplicateFrameButton()
+    }
+    
+    func actionsToolBarDidTapGenerateFramesButton(_ actionsToolBar: ActionsToolBar) {
+        let generateFramesAlertController = UIAlertController(
+            title: "Генерация кадров",
+            message: "Введите количество кадров для генерации",
+            preferredStyle: .alert
+        )
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        let generateAction = UIAlertAction(
+            title: "Сгенерировать", style: .default
+        ) { [weak self, weak generateFramesAlertController] _ in
+            let textField = generateFramesAlertController?.textFields?.first
+            if let text = textField?.text, let count = Int(text) {
+                self?.model.didRequestToGenerateFrames(count: count)
+            }
+        }
+        
+        generateAction.isEnabled = false
+        
+        generateFramesAlertController.addTextField { textField in
+            textField.keyboardType = .numberPad
+            textField.addAction(.init(handler: { [weak textField] _ in
+                if let text = textField?.text, let count = Int(text), count > 0 {
+                    generateAction.isEnabled = true
+                } else {
+                    generateAction.isEnabled = false
+                }
+            }), for: .editingChanged)
+        }
+        
+        generateFramesAlertController.addAction(cancelAction)
+        generateFramesAlertController.addAction(generateAction)
+        present(generateFramesAlertController, animated: true)
     }
     
     func actionsToolBarDidTapFramesButton(_ actionsToolBar: ActionsToolBar) {
@@ -183,45 +290,16 @@ extension CanvasViewController: ActionsToolBarDelegate {
     }
     
     func actionsToolBarDidTapPauseButton(_ actionsToolBar: ActionsToolBar) {
-        // TODO
+        model.didTapPauseButton()
+    }
+    
+    func actionsToolBarDidTapChangeFPSButton(_ actionsToolBar: ActionsToolBar) {
+        // TODO.
     }
 }
 
 extension CanvasViewController: DrawingToolBarDelegate {
     func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectTool tool: (any DrawingTool)?) {
         canvasView.currentTool = tool
-    }
-}
-
-extension CanvasViewController: CanvasViewDelegate {
-    func canvasView(_ canvasView: CanvasView, didUpdateFrame frame: Frame) {
-        model.didUpdateCurrentFrame(frame: frame)
-    }
-    
-    func canvasView(_ canvasView: CanvasView, updateIsUndoEnabled isUndoEnabled: Bool) {
-        actionsToolBar.setIsUndoButtonEnabled(isUndoEnabled)
-    }
-    
-    func canvasView(_ canvasView: CanvasView, updateIsRedoEnabled isRedoEnabled: Bool) {
-        actionsToolBar.setIsRedoButtonEnabled(isRedoEnabled)
-    }
-}
-
-extension CanvasViewController: CanvasModelOutput {
-    func getCurrentFrame() -> Frame {
-        canvasView.getFrame()
-    }
-    
-    func changeFrame(frame: Frame) {
-        canvasView.setFrame(frame)
-    }
-    
-    func setDeleteButtonIsEnabled(_ isEnabled: Bool) {
-        actionsToolBar.setIsDeleteButtonEnabled(true)
-    }
-    
-    func startAnimation(frames: [Frame], fps: Int) {
-        animationBackgroundView.isHidden = false
-        animationView.startAnimation(frames: frames, fps: fps)
     }
 }

@@ -62,8 +62,8 @@
             filePath = "canvas-animation-app/CanvasScreen/CanvasViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
             landmarkName = "drawingToolBar(_:didSelectTool:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -81,22 +81,6 @@
             startingLineNumber = "18"
             endingLineNumber = "18"
             landmarkName = "sizeThatFits(_:frame:index:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2F1D24F9-AB32-4B73-9662-01E10050F5D5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "canvas-animation-app/CanvasScreen/CanvasViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "actionsToolBarDidTapFramesButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

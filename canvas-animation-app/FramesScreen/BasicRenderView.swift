@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 final class BasicRenderView: UIView {
-    var renderFrame: Frame? {
+    var renderFrame: AnimationFrame? {
         didSet {
             aspectRatioConstraint?.isActive = false
             aspectRatioConstraint = nil

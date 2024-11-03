@@ -14,7 +14,7 @@ extension FrameCollectionViewCell {
 final class FrameCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "FrameTableViewCell"
     
-    static func sizeThatFits(_ size: CGSize, frame: Frame, index: Int) -> CGSize {
+    static func sizeThatFits(_ size: CGSize, frame: AnimationFrame, index: Int) -> CGSize {
         let estimatedIndexHeight = "\(index)".estimatedHeight(
             withFont: .systemFont(ofSize: 16), width: .greatestFiniteMagnitude
         )
@@ -67,7 +67,7 @@ final class FrameCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(frame: Frame, index: Int) {
+    func setup(frame: AnimationFrame, index: Int) {
         renderView.renderFrame = frame
         indexLabel.text = "\(index)"
     }
