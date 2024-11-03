@@ -3,6 +3,7 @@ import UIKit
 
 protocol DrawingToolStroke {
     func draw(inContext context: CGContext)
+    func withAlphaComponent(_ alpha: CGFloat) -> Self
 }
 
 protocol DrawingTool {

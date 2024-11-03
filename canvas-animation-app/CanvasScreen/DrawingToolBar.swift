@@ -110,7 +110,7 @@ final class DrawingToolBar: CustomToolBar {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func dismissContextMenusAndResetState() {
+    private func dismissContextMenusAndResetState() {
         super.dismissContextMenus()
         
         isShapesContextMenuVisible = false

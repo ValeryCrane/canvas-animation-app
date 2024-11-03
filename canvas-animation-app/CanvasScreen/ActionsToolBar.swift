@@ -57,6 +57,10 @@ final class ActionsToolBar: CustomToolBar {
         pauseButton.isEnabled = isEnabled
     }
     
+    func setIsDeleteButtonEnabled(_ isEnabled: Bool) {
+        deleteButton.isEnabled = isEnabled
+    }
+    
     private func configureButtons() {
         undoButton.addTarget(self, action: #selector(didTapUndoButton(_:)), for: .touchUpInside)
         redoButton.addTarget(self, action: #selector(didTapRedoButton(_:)), for: .touchUpInside)

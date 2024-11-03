@@ -18,13 +18,14 @@ extension CanvasViewController {
 }
 
 final class CanvasViewController: UIViewController {
+    var model: CanvasModelInput
     
     private lazy var actionsToolBar: ActionsToolBar = {
         let actionsToolBar = ActionsToolBar(delegate: self)
         actionsToolBar.setIsUndoButtonEnabled(false)
         actionsToolBar.setIsRedoButtonEnabled(false)
-        actionsToolBar.setIsPlayButtonEnabled(false)
         actionsToolBar.setIsPauseButtonEnabled(false)
+        actionsToolBar.setIsDeleteButtonEnabled(false)
         
         return actionsToolBar
     }()
@@ -38,15 +39,37 @@ final class CanvasViewController: UIViewController {
     private let canvasView = CanvasView()
     private let canvasBackgroundView = CanvasBackgroundView()
     
+    private let animationView = CanvasAnimationView()
+    private let animationBackgroundView = CanvasBackgroundView()
+    
+    init(model: CanvasModelInput) {
+        self.model = model
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .black
         canvasView.delegate = self
+        animationBackgroundView.isHidden = true
         
         layoutActionsToolBar()
         layoutDrawingToolBar()
         layoutCanvasView()
+        layoutCanvasAnimationView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        model.viewDidAppear()
     }
     
     private func layoutActionsToolBar() {
@@ -111,6 +134,27 @@ final class CanvasViewController: UIViewController {
             canvasView.bottomAnchor.constraint(equalTo: canvasBackgroundView.bottomAnchor)
         ])
     }
+    
+    private func layoutCanvasAnimationView() {
+        view.addSubview(animationBackgroundView)
+        animationBackgroundView.addSubview(animationView)
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        animationBackgroundView.layer.cornerRadius = Constants.canvasViewCornerRadius
+        animationBackgroundView.clipsToBounds = true
+        
+        NSLayoutConstraint.activate([
+            animationBackgroundView.topAnchor.constraint(equalTo: canvasBackgroundView.topAnchor),
+            animationBackgroundView.leadingAnchor.constraint(equalTo: canvasBackgroundView.leadingAnchor),
+            animationBackgroundView.trailingAnchor.constraint(equalTo: canvasBackgroundView.trailingAnchor),
+            animationBackgroundView.bottomAnchor.constraint(equalTo: canvasBackgroundView.bottomAnchor),
+            
+            animationView.topAnchor.constraint(equalTo: animationBackgroundView.topAnchor),
+            animationView.leadingAnchor.constraint(equalTo: animationBackgroundView.leadingAnchor),
+            animationView.trailingAnchor.constraint(equalTo: animationBackgroundView.trailingAnchor),
+            animationView.bottomAnchor.constraint(equalTo: animationBackgroundView.bottomAnchor)
+        ])
+    }
 }
 
 extension CanvasViewController: ActionsToolBarDelegate {
@@ -123,19 +167,19 @@ extension CanvasViewController: ActionsToolBarDelegate {
     }
     
     func actionsToolBarDidTapDeleteButton(_ actionsToolBar: ActionsToolBar) {
-        // TODO
+        model.didTapDeleteButton()
     }
     
     func actionsToolBarDidTapAddButton(_ actionsToolBar: ActionsToolBar) {
-        // TODO
+        model.didTapAddButton()
     }
     
     func actionsToolBarDidTapFramesButton(_ actionsToolBar: ActionsToolBar) {
-        // TODO
+        model.didTapFramesButton()
     }
     
     func actionsToolBarDidTapPlayButton(_ actionsToolBar: ActionsToolBar) {
-        // TODO
+        model.didTapPlayButton()
     }
     
     func actionsToolBarDidTapPauseButton(_ actionsToolBar: ActionsToolBar) {
@@ -147,22 +191,37 @@ extension CanvasViewController: DrawingToolBarDelegate {
     func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectTool tool: (any DrawingTool)?) {
         canvasView.currentTool = tool
     }
-    
-    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectColor color: UIColor) {
-        // TODO
-    }
-    
-    func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSetStrokeWidth strokeWidth: CGFloat) {
-        // TODO
-    }
 }
 
 extension CanvasViewController: CanvasViewDelegate {
+    func canvasView(_ canvasView: CanvasView, didUpdateFrame frame: Frame) {
+        model.didUpdateCurrentFrame(frame: frame)
+    }
+    
     func canvasView(_ canvasView: CanvasView, updateIsUndoEnabled isUndoEnabled: Bool) {
         actionsToolBar.setIsUndoButtonEnabled(isUndoEnabled)
     }
     
     func canvasView(_ canvasView: CanvasView, updateIsRedoEnabled isRedoEnabled: Bool) {
         actionsToolBar.setIsRedoButtonEnabled(isRedoEnabled)
+    }
+}
+
+extension CanvasViewController: CanvasModelOutput {
+    func getCurrentFrame() -> Frame {
+        canvasView.getFrame()
+    }
+    
+    func changeFrame(frame: Frame) {
+        canvasView.setFrame(frame)
+    }
+    
+    func setDeleteButtonIsEnabled(_ isEnabled: Bool) {
+        actionsToolBar.setIsDeleteButtonEnabled(true)
+    }
+    
+    func startAnimation(frames: [Frame], fps: Int) {
+        animationBackgroundView.isHidden = false
+        animationView.startAnimation(frames: frames, fps: fps)
     }
 }

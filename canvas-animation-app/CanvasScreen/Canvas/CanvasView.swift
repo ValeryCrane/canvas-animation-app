@@ -4,10 +4,17 @@ import UIKit
 protocol CanvasViewDelegate: AnyObject {
     func canvasView(_ canvasView: CanvasView, updateIsUndoEnabled isUndoEnabled: Bool)
     func canvasView(_ canvasView: CanvasView, updateIsRedoEnabled isRedoEnabled: Bool)
+    func canvasView(_ canvasView: CanvasView, didUpdateFrame frame: Frame)
 }
 
 final class CanvasView: UIView {
     weak var delegate: CanvasViewDelegate?
+    
+    var currentTool: (any DrawingTool)? {
+        didSet {
+            currentTool?.delegate = self
+        }
+    }
     
     private(set) var isUndoEnabled: Bool {
         didSet {
@@ -25,16 +32,8 @@ final class CanvasView: UIView {
         }
     }
     
-    var currentTool: (any DrawingTool)? {
-        didSet {
-            currentTool?.delegate = self
-        }
-    }
-    
     private var strokesMaxIndex = 0
     private var strokes: [DrawingToolStroke] = []
-    
-    private let testView = UIView()
     
     init() {
         isUndoEnabled = false
@@ -69,12 +68,36 @@ final class CanvasView: UIView {
         strokesMaxIndex -= 1
         updateUndoAndRedoStates()
         setNeedsDisplay()
+        
+        delegate?.canvasView(self, didUpdateFrame: getFrame())
     }
     
     func redo() {
         guard strokesMaxIndex < strokes.count else { return }
         
         strokesMaxIndex += 1
+        updateUndoAndRedoStates()
+        setNeedsDisplay()
+        
+        delegate?.canvasView(self, didUpdateFrame: getFrame())
+    }
+    
+    func getFrame() -> Frame {
+        .init(
+            size: frame.size,
+            strokesMaxIndex: strokesMaxIndex,
+            strokes: strokes
+        )
+    }
+    
+    func setFrame(_ frame: Frame) {
+        guard frame.size == self.frame.size else {
+            print("Несовпадающие размеры фрейма:(")
+            return
+        }
+        
+        strokesMaxIndex = frame.strokesMaxIndex
+        strokes = frame.strokes
         updateUndoAndRedoStates()
         setNeedsDisplay()
     }
@@ -117,5 +140,6 @@ extension CanvasView: DrawingToolDelegate {
         strokesMaxIndex = strokes.count
         
         updateUndoAndRedoStates()
+        delegate?.canvasView(self, didUpdateFrame: getFrame())
     }
 }

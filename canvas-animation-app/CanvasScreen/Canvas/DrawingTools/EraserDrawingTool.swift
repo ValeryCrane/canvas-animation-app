@@ -6,6 +6,10 @@ struct EraserStroke: DrawingToolStroke {
         EraserDrawingTool.drawStroke(self, inContext: context)
     }
     
+    func withAlphaComponent(_ alpha: CGFloat) -> EraserStroke {
+        self
+    }
+    
     let strokeWidth: CGFloat
     let points: [CGPoint]
 }
