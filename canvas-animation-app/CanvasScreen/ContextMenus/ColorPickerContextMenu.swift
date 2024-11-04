@@ -58,8 +58,8 @@ final class ColorPickerContextMenu: UIView {
     
     private var expandType: ExpandType = .notExpanded
     
-    private let briefBackgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
-    private let fullBackgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
+    private let briefBackgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
+    private let fullBackgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
     private lazy var rgbColorPikerView = RGBColorPickerView(initialColor: self.initialColor, delegate: self)
     
     private lazy var briefCollectionView: UICollectionView = {

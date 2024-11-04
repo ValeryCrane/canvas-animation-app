@@ -58,7 +58,7 @@ final class CanvasViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
+        view.backgroundColor = .systemBackground
         canvasView.delegate = self
         animationBackgroundView.isHidden = true
         

@@ -161,7 +161,7 @@ final class DrawingToolBar: CustomToolBar {
             ))
         case .eraser:
             delegate?.drawingToolBar(self, didSelectTool: EraserDrawingTool(
-                strokeWidth: 10
+                strokeWidth: 20
             ))
         case .square:
             // TODO.

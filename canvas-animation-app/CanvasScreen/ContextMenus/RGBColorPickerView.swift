@@ -31,7 +31,7 @@ final class RGBColorPickerView: UIVisualEffectView {
     init(initialColor: UIColor, delegate: RGBColorPickerViewDelegate? = nil) {
         self.delegate = delegate
         
-        super.init(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
+        super.init(effect: UIBlurEffect(style: .systemUltraThinMaterial))
         
         configure(initialColor: initialColor)
         layout()
@@ -43,7 +43,7 @@ final class RGBColorPickerView: UIVisualEffectView {
     }
     
     private func configure(initialColor: UIColor) {
-        finishImageView.tintColor = .white
+        finishImageView.tintColor = .res.tool
         
         redSlider.minimumTrackTintColor = .systemRed
         greenSlider.minimumTrackTintColor = .systemGreen

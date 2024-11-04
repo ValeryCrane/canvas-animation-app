@@ -32,7 +32,7 @@ final class FPSContextMenu: UIVisualEffectView {
         self.fps = initialFPS
         self.delegate = delegate
         
-        super.init(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
+        super.init(effect: UIBlurEffect(style: .systemUltraThinMaterial))
         
         configure()
         layout()
@@ -47,8 +47,8 @@ final class FPSContextMenu: UIVisualEffectView {
     private func configure() {
         valueLabel.text = "FPS: \(fps)"
         valueLabel.font = .systemFont(ofSize: 16)
-        valueLabel.textColor = .white
-        finishImageView.tintColor = .white
+        valueLabel.textColor = .res.tool
+        finishImageView.tintColor = .res.tool
         slider.minimumValue = 5
         slider.maximumValue = 60
         slider.value = Float(fps)

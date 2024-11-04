@@ -35,7 +35,7 @@ final class StrokeWidthContextMenu: UIVisualEffectView {
     ) {
         self.delegate = delegate
         
-        super.init(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
+        super.init(effect: UIBlurEffect(style: .systemUltraThinMaterial))
         
         configure(
             initialStrokeWidth: initialStrokeWidth,

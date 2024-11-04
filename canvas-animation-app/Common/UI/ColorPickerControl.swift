@@ -3,7 +3,7 @@ import UIKit
 
 extension ColorPickerControl {
     private enum Constants {
-        static let selectedBorderWidth: CGFloat = 1.5
+        static let borderWidth: CGFloat = 1.5
     }
 }
 
@@ -16,11 +16,7 @@ final class ColorPickerControl: UIControl {
     
     override var isSelected: Bool {
         didSet {
-            if isSelected {
-                iconLayer.borderWidth = Constants.selectedBorderWidth
-            } else {
-                iconLayer.borderWidth = 0
-            }
+            updateBorderColor()
         }
     }
     
@@ -33,7 +29,8 @@ final class ColorPickerControl: UIControl {
         
         layer.addSublayer(iconLayer)
         iconLayer.backgroundColor = color.cgColor
-        iconLayer.borderColor = UIColor.res.toolSelected.cgColor
+        iconLayer.borderWidth = Constants.borderWidth
+        updateBorderColor()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapGesture(_:)))
         addGestureRecognizer(tapGestureRecognizer)
@@ -42,6 +39,12 @@ final class ColorPickerControl: UIControl {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
+        
+        updateBorderColor()
     }
     
     override func layoutSubviews() {
@@ -62,6 +65,14 @@ final class ColorPickerControl: UIControl {
     private func onTapGesture(_ sender: UITapGestureRecognizer) {
         if isEnabled {
             sendActions(for: .touchUpInside)
+        }
+    }
+    
+    private func updateBorderColor() {
+        if isSelected {
+            iconLayer.borderColor = UIColor.res.toolSelected.cgColor
+        } else {
+            iconLayer.borderColor = UIColor.res.tool.cgColor
         }
     }
 }

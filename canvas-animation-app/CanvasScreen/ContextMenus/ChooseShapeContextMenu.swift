@@ -76,7 +76,7 @@ final class ChooseShapeContextMenu: UIVisualEffectView {
         self.delegate = delegate
         self.shape = shape
         
-        super.init(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
+        super.init(effect: UIBlurEffect(style: .systemUltraThinMaterial))
         
         layout()
         alpha = 0
