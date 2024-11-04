@@ -5,6 +5,7 @@ final class ToolCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier: String = "ToolCollectionViewCell"
     
     private let imageView = UIImageView()
+    private var onTap: (() -> Void)?
     
     override var isSelected: Bool {
         didSet {
@@ -29,7 +30,7 @@ final class ToolCollectionViewCell: UICollectionViewCell {
         imageView.frame = bounds
     }
     
-    func setup(image: UIImage) {
+    func setup(image: UIImage, onTap: (() -> Void)? = nil) {
         self.imageView.image = image
     }
     

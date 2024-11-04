@@ -294,12 +294,23 @@ extension CanvasViewController: ActionsToolBarDelegate {
     }
     
     func actionsToolBarDidTapChangeFPSButton(_ actionsToolBar: ActionsToolBar) {
-        // TODO.
+        showChangeFPSContextMenu()
+    }
+    
+    private func showChangeFPSContextMenu() {
+        drawingToolBar.showContextMenu(FPSContextMenu(initialFPS: model.getAnimationFPS(), delegate: self))
     }
 }
 
 extension CanvasViewController: DrawingToolBarDelegate {
     func drawingToolBar(_ drawingToolBar: DrawingToolBar, didSelectTool tool: (any DrawingTool)?) {
         canvasView.currentTool = tool
+    }
+}
+
+extension CanvasViewController: FPSContextMenuDelegate {
+    func fpsContextMenu(_ fpsContextMenu: FPSContextMenu, didChangeFPS fps: Int) {
+        drawingToolBar.dismissContextMenusAndResetState()
+        model.didRequestToChangeAnimationFPS(fps)
     }
 }

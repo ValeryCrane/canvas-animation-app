@@ -62,6 +62,7 @@ final class DrawingToolBar: CustomToolBar {
     
     private var isShapesContextMenuVisible: Bool = false
     private var isColorsContextMenuVisible: Bool = false
+    private var isStrokeWidthContextMenuVisible: Bool = false
     
     private var toolType: DrawingToolType? {
         didSet {
@@ -119,17 +120,21 @@ final class DrawingToolBar: CustomToolBar {
         dismissContextMenusAndResetState()
     }
     
-    private func dismissContextMenusAndResetState() {
+    func dismissContextMenusAndResetState() {
         super.dismissContextMenus()
         
         isShapesContextMenuVisible = false
         isColorsContextMenuVisible = false
+        isStrokeWidthContextMenuVisible = false
+        clearSelection()
     }
     
     private func clearSelection() {
-        [pencilButton, brushButton, eraserButton, instrumentsButton, colorPickerButton].forEach {
-            $0.isSelected = false
-        }
+        pencilButton.isSelected = toolType == .pencil
+        brushButton.isSelected = false
+        eraserButton.isSelected = toolType == .eraser
+        instrumentsButton.isSelected = toolType?.chooseShapeContextMenuShape() != nil
+        colorPickerButton.isSelected = false
     }
     
     private func configureButtons() {
@@ -177,29 +182,30 @@ final class DrawingToolBar: CustomToolBar {
     
     @objc
     private func didTapPencilButton(_ sender: ToolButton) {
+        toolType = .pencil
         dismissContextMenusAndResetState()
-        clearSelection()
-        
-        if !pencilButton.isSelected {
-            toolType = .pencil
-            pencilButton.isSelected = true
-        }
     }
     
     @objc
     private func didTapBrushButton(_ sender: ToolButton) {
-        // TODO.
+        guard !isStrokeWidthContextMenuVisible else { return }
+        
+        dismissContextMenusAndResetState()
+        
+        brushButton.showContextMenu(StrokeWidthContextMenu(
+            initialStrokeWidth: strokeWidth,
+            minimumStrokeWidth: 1,
+            maximumStrokeWidth: 15,
+            delegate: self
+        ))
+        brushButton.isSelected = true
+        isStrokeWidthContextMenuVisible = true
     }
     
     @objc
     private func didTapEraserButton(_ sender: ToolButton) {
+        toolType = .eraser
         dismissContextMenusAndResetState()
-        clearSelection()
-        
-        if !eraserButton.isSelected {
-            toolType = .eraser
-            eraserButton.isSelected = true
-        }
     }
     
     @objc
@@ -207,14 +213,15 @@ final class DrawingToolBar: CustomToolBar {
         guard !isShapesContextMenuVisible else { return }
         
         dismissContextMenusAndResetState()
-        colorPickerButton.isSelected = false
-        instrumentsButton.isSelected = true
         
         if let toolType, let shape = toolType.chooseShapeContextMenuShape() {
             instrumentsButton.showContextMenu(ChooseShapeContextMenu(delegate: self, shape: shape))
         } else {
             instrumentsButton.showContextMenu(ChooseShapeContextMenu(delegate: self))
         }
+        
+        instrumentsButton.isSelected = true
+        isShapesContextMenuVisible = true
     }
     
     @objc
@@ -222,12 +229,9 @@ final class DrawingToolBar: CustomToolBar {
         guard !isColorsContextMenuVisible else { return }
         
         dismissContextMenusAndResetState()
-        if toolType?.chooseShapeContextMenuShape() == nil {
-            instrumentsButton.isSelected = false
-        }
-        
+        colorPickerButton.showContextMenu(ColorPickerContextMenu(initialColor: strokeColor, delegate: self))
         colorPickerButton.isSelected = true
-        colorPickerButton.showContextMenu(ColorPickerContextMenu(delegate: self))
+        isColorsContextMenuVisible = true
     }
 }
 
@@ -236,19 +240,21 @@ extension DrawingToolBar: ChooseShapeContextMenuDelegate {
         _ chooseShapeContextMenu: ChooseShapeContextMenu,
         didSelectShape shape: ChooseShapeContextMenu.Shape
     ) {
-        dismissContextMenusAndResetState()
-        clearSelection()
-        
-        instrumentsButton.isSelected = true
         toolType = .fromChooseShapeContextMenuShape(shape)
+        dismissContextMenusAndResetState()
     }
 }
 
 extension DrawingToolBar: ColorPickerContextMenuDelegate {
     func colorPickerContextMenu(_ colorPickerContextMenu: ColorPickerContextMenu, didPickColor color: UIColor) {
         dismissContextMenusAndResetState()
-        colorPickerButton.isSelected = false
         colorPickerButton.color = color
         strokeColor = color
+    }
+}
+
+extension DrawingToolBar: StrokeWidthContextMenuDelegate {
+    func strokeWidthContextMenu(_ strokeWidthCobtextMenu: StrokeWidthContextMenu, didChangeStrokeWidth strokeWidth: CGFloat) {
+        self.strokeWidth = strokeWidth
     }
 }

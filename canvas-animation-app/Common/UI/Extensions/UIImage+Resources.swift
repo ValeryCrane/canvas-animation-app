@@ -22,5 +22,10 @@ extension UIImage {
         static let arrowUp: UIImage = .init(named: "arrow_up")!
         
         static let canvasBackground: UIImage = .init(named: "canvas_background")!
+        
+        static let strokeSliderTrack: UIImage = .init(named: "stroke_slider_track")!
+        static let strokeSliderThumb: UIImage = .init(named: "stroke_slider_thumb")!
+        
+        static let checkmark: UIImage = .init(systemName: "checkmark")!
     }
 }

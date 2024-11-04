@@ -30,13 +30,37 @@ extension ColorPickerContextMenu {
     }
 }
 
+extension ColorPickerContextMenu {
+    private enum ExpandType {
+        case notExpanded
+        case fullPalette
+        case rgbPicker
+        
+        var nextType: Self {
+            switch self {
+            case .notExpanded:
+                .fullPalette
+            case .fullPalette:
+                .rgbPicker
+            case .rgbPicker:
+                .notExpanded
+            }
+        }
+    }
+}
+
 // MARK: ColorPickerContextMenu
 
 final class ColorPickerContextMenu: UIView {
     weak var delegate: ColorPickerContextMenuDelegate?
     
+    private let initialColor: UIColor
+    
+    private var expandType: ExpandType = .notExpanded
+    
     private let briefBackgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
     private let fullBackgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
+    private lazy var rgbColorPikerView = RGBColorPickerView(initialColor: self.initialColor, delegate: self)
     
     private lazy var briefCollectionView: UICollectionView = {
         let collectionView = AutoSizingCollectionView(
@@ -80,14 +104,16 @@ final class ColorPickerContextMenu: UIView {
         return collectionView
     }()
     
-    init(delegate: ColorPickerContextMenuDelegate? = nil) {
+    init(initialColor: UIColor, delegate: ColorPickerContextMenuDelegate? = nil) {
+        self.initialColor = initialColor
         self.delegate = delegate
         
         super.init(frame: .zero)
         
         layout()
         alpha = 0
-        setIsPalleteExpanded(false, animated: false)
+        fullBackgroundView.isHidden = true
+        updatePaletteExpansion(animated: false)
     }
     
     @available(*, unavailable)
@@ -96,7 +122,7 @@ final class ColorPickerContextMenu: UIView {
     }
     
     private func layout() {
-        let stackView = UIStackView(arrangedSubviews: [fullBackgroundView, briefBackgroundView])
+        let stackView = UIStackView(arrangedSubviews: [fullBackgroundView, rgbColorPikerView, briefBackgroundView])
         stackView.axis = .vertical
         stackView.spacing = Constants.sectionSpacing
         
@@ -125,10 +151,10 @@ final class ColorPickerContextMenu: UIView {
             fullCollectionView.bottomAnchor.constraint(equalTo: fullBackgroundView.contentView.bottomAnchor)
         ])
         
-        briefBackgroundView.layer.cornerRadius = Constants.cornerRadius
-        fullBackgroundView.layer.cornerRadius = Constants.cornerRadius
-        briefBackgroundView.clipsToBounds = true
-        fullBackgroundView.clipsToBounds = true
+        [briefBackgroundView, fullBackgroundView, rgbColorPikerView].forEach { view in
+            view.layer.cornerRadius = Constants.cornerRadius
+            view.clipsToBounds = true
+        }
     }
     
     private func createCollectionViewFlowLayout() -> UICollectionViewFlowLayout {
@@ -146,19 +172,60 @@ final class ColorPickerContextMenu: UIView {
         return flowLayout
     }
     
-    private func setIsPalleteExpanded(_ isExpanded: Bool, animated: Bool) {
-        guard isExpanded == fullBackgroundView.isHidden else { return }
+    private func updatePaletteExpansion(animated: Bool) {
+        switch expandType {
+        case .notExpanded:
+            briefCollectionView.deselectItem(at: .init(row: 0, section: 0), animated: false)
+        case .fullPalette:
+            briefCollectionView.selectItem(at: .init(row: 0, section: 0), animated: false, scrollPosition: .top)
+        case .rgbPicker:
+            briefCollectionView.selectItem(at: .init(row: 0, section: 0), animated: false, scrollPosition: .top)
+        }
         
-        if isExpanded {
-            fullBackgroundView.isHidden = false
-            UIView.animate(withDuration: animated ? Constants.alphaAnimationDuration : 0) {
-                self.fullBackgroundView.alpha = 1
-            }
-        } else {
+        switch expandType {
+        case .notExpanded:
             UIView.animate(withDuration: animated ? Constants.alphaAnimationDuration : 0) {
                 self.fullBackgroundView.alpha = 0
+                self.rgbColorPikerView.alpha = 0
             } completion: { _ in
                 self.fullBackgroundView.isHidden = true
+                self.rgbColorPikerView.isHidden = true
+            }
+        case .fullPalette:
+            let showFullPalette = {
+                self.fullBackgroundView.isHidden = false
+                UIView.animate(withDuration: animated ? Constants.alphaAnimationDuration : 0) {
+                    self.fullBackgroundView.alpha = 1
+                }
+            }
+            
+            if rgbColorPikerView.isHidden {
+                showFullPalette()
+            } else {
+                UIView.animate(withDuration: animated ? Constants.alphaAnimationDuration : 0) {
+                    self.rgbColorPikerView.alpha = 0
+                } completion: { _ in
+                    self.rgbColorPikerView.isHidden = true
+                    showFullPalette()
+                }
+            }
+        case .rgbPicker:
+            let showRGBPicker = {
+                self.rgbColorPikerView.isHidden = false
+                UIView.animate(withDuration: animated ? Constants.alphaAnimationDuration : 0) {
+                    self.rgbColorPikerView.alpha = 1
+                }
+            }
+            
+            if fullBackgroundView.isHidden {
+                showRGBPicker()
+            } else {
+                UIView.animate(withDuration: animated ? Constants.alphaAnimationDuration : 0) {
+                    self.fullBackgroundView.alpha = 0
+                } completion: { _ in
+                    self.fullBackgroundView.isHidden = true
+                    showRGBPicker()
+                }
             }
         }
     }
@@ -199,7 +266,8 @@ extension ColorPickerContextMenu: UICollectionViewDelegate {
         if collectionView == briefCollectionView {
             switch indexPath.row {
             case 0:
-                setIsPalleteExpanded(true, animated: true)
+                expandType = expandType.nextType
+                updatePaletteExpansion(animated: true)
             default:
                 delegate?.colorPickerContextMenu(
                     self, didPickColor: UIColor.res.briefPalette[indexPath.row - 1]
@@ -214,7 +282,8 @@ extension ColorPickerContextMenu: UICollectionViewDelegate {
         if collectionView == briefCollectionView {
             switch indexPath.row {
             case 0:
-                setIsPalleteExpanded(false, animated: true)
+                expandType = expandType.nextType
+                updatePaletteExpansion(animated: true)
             default:
                 break
             }
@@ -284,5 +353,11 @@ extension ColorPickerContextMenu: UICollectionViewDataSource {
         
         cell?.setup(color: UIColor.res.fullPalette[indexPath.row])
         return cell ?? UICollectionViewCell()
+    }
+}
+
+extension ColorPickerContextMenu: RGBColorPickerViewDelegate {
+    func rgbColorPickerView(_ rgbColorPickerView: RGBColorPickerView, didPickColor color: UIColor) {
+        delegate?.colorPickerContextMenu(self, didPickColor: color)
     }
 }
