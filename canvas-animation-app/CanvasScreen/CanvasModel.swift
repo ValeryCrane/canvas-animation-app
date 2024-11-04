@@ -106,9 +106,7 @@ extension CanvasModel: CanvasModelInput {
     }
     
     func didTapDuplicateFrameButton() {
-        guard let lastFrame = frames.last else { return }
-        
-        frames.append(lastFrame)
+        frames.append(frames[currentFrameIndex])
         currentFrameIndex = frames.count - 1
         
         view?.setIsDeleteButtonEnabled(frames.count > 1)
