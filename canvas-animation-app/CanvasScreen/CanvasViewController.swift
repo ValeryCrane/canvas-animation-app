@@ -10,7 +10,7 @@ extension CanvasViewController {
         static let canvasViewSideMargin: CGFloat = 16
         static let canvasViewBottomMargin: CGFloat = 22
         
-        static let drawingToolBarBottomMargin: CGFloat = 0
+        static let drawingToolBarBottomMargin: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 8 : 0
         static let drawingToolBarSideMargin: CGFloat = 16
         
         static let canvasViewCornerRadius: CGFloat = 20
@@ -97,7 +97,7 @@ final class CanvasViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             drawingToolBar.bottomAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Constants.drawingToolBarBottomMargin
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constants.drawingToolBarBottomMargin
             ),
             drawingToolBar.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor, constant: Constants.drawingToolBarSideMargin
