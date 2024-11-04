@@ -1,6 +1,14 @@
 import Foundation
 import UIKit
 
+extension FramesViewController {
+    private enum Constants {
+        static let interitemSpacing: CGFloat = 16
+        static let verticalInsets: CGFloat = 48
+        static let horizontalInsets: CGFloat = 32
+    }
+}
+
 final class FramesViewController: UIViewController {
     private let frames: [AnimationFrame]
     private let selectedIndex: Int
@@ -10,6 +18,13 @@ final class FramesViewController: UIViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         flowLayout.itemSize = UIView.layoutFittingExpandedSize
+        flowLayout.minimumInteritemSpacing = Constants.interitemSpacing
+        flowLayout.sectionInset = .init(
+            top: Constants.verticalInsets,
+            left: Constants.horizontalInsets,
+            bottom: Constants.verticalInsets,
+            right: Constants.horizontalInsets
+        )
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.delegate = self
@@ -45,6 +60,16 @@ final class FramesViewController: UIViewController {
         layout()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        collectionView.selectItem(
+            at: .init(row: selectedIndex, section: 0),
+            animated: true,
+            scrollPosition: .centeredHorizontally
+        )
+    }
+    
     private func layout() {
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +100,10 @@ extension FramesViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         FrameCollectionViewCell.sizeThatFits(
-            .init(width: .greatestFiniteMagnitude, height: collectionView.bounds.height),
+            .init(
+                width: .greatestFiniteMagnitude,
+                height: collectionView.bounds.height - Constants.verticalInsets * 2
+            ),
             frame: frames[indexPath.row],
             index: indexPath.row
         )

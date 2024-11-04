@@ -3,10 +3,7 @@ import UIKit
 
 extension FrameCollectionViewCell {
     private enum Constants {
-        static let horizontalMargin: CGFloat = 16
-        static let verticalMargin: CGFloat = 32
         static let indexSpacing: CGFloat = 16
-        
         static let renderViewCornerRadius: CGFloat = 4
     }
 }
@@ -20,9 +17,8 @@ final class FrameCollectionViewCell: UICollectionViewCell {
         )
         
         let renderViewMaxSize: CGSize = .init(
-            width: size.width - 2 * Constants.horizontalMargin,
-            height: size.height - 2 * Constants.verticalMargin
-                - Constants.indexSpacing - estimatedIndexHeight
+            width: size.width,
+            height: size.height - Constants.indexSpacing - estimatedIndexHeight
         )
         
         let aspectRatio = frame.size.width / frame.size.height
@@ -39,9 +35,8 @@ final class FrameCollectionViewCell: UICollectionViewCell {
         }
         
         return .init(
-            width: renderViewWidth + 2 * Constants.horizontalMargin,
-            height: renderViewHeight + 2 * Constants.verticalMargin
-                + Constants.indexSpacing + estimatedIndexHeight
+            width: renderViewWidth,
+            height: renderViewHeight + Constants.indexSpacing + estimatedIndexHeight
         )
     }
     
@@ -95,22 +90,14 @@ final class FrameCollectionViewCell: UICollectionViewCell {
             renderView.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor),
             renderView.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor),
             
-            backgroundImageView.topAnchor.constraint(
-                equalTo: contentView.topAnchor, constant: Constants.verticalMargin
-            ),
-            backgroundImageView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor, constant: Constants.horizontalMargin
-            ),
-            backgroundImageView.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor, constant: -Constants.horizontalMargin
-            ),
+            backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             indexLabel.centerXAnchor.constraint(equalTo: backgroundImageView.centerXAnchor),
+            indexLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             indexLabel.topAnchor.constraint(
                 equalTo: renderView.bottomAnchor, constant: Constants.indexSpacing
-            ),
-            indexLabel.bottomAnchor.constraint(
-                equalTo: bottomAnchor, constant: -Constants.verticalMargin
             )
         ])
     }
