@@ -37,6 +37,7 @@ protocol CanvasModelOutput: UIViewController {
 final class CanvasModel {
     weak var view: CanvasModelOutput?
     
+    private let gifRenderer = CanvasGIFRenderer()
     private let frameGenerator: FrameGenerator = SpinningCubeFrameGenerator()
     
     private var animationFPS = 30
@@ -114,18 +115,18 @@ extension CanvasModel: CanvasModelInput {
     }
     
     func didRequestToGenerateFrames(count: Int) {
-        guard let lastFrame = frames.last else { return }
+        guard let lastFrameSize = frames.last?.size else { return }
         
-        frameGenerator.generate(
-            frameCount: count,
-            frameSize: lastFrame.size
-        ) { [weak self] animationFrames in
-            guard let self else { return }
-            
-            self.frames.append(contentsOf: animationFrames)
-            self.currentFrameIndex = self.frames.count - 1
-            self.view?.setIsDeleteButtonEnabled(frames.count > 1)
-            self.view?.changeFrame(frame: self.currentFrame, undelyingFrame: self.underlyingFrame)
+        view?.startLoader()
+        DispatchQueue.global().async {
+            let newFrames = self.frameGenerator.generate(frameCount: count, frameSize: lastFrameSize)
+            DispatchQueue.main.async {
+                self.view?.stopLoader()
+                self.frames.append(contentsOf: newFrames)
+                self.currentFrameIndex = self.frames.count - 1
+                self.view?.setIsDeleteButtonEnabled(self.frames.count > 1)
+                self.view?.changeFrame(frame: self.currentFrame, undelyingFrame: self.underlyingFrame)
+            }
         }
     }
     
@@ -200,6 +201,36 @@ extension CanvasModel: CanvasModelInput {
     }
     
     func didTapExportGIFButton() {
-        // TODO.
+        view?.startLoader()
+        
+        DispatchQueue.global().async {
+            guard let frameSize = self.frames.first?.size, let gifFileURL = self.gifRenderer.renderGIF(
+                fromFrames: self.frames,
+                frameSize: frameSize,
+                fps: self.animationFPS
+            ) else {
+                DispatchQueue.main.async {
+                    self.view?.stopLoader()
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.view?.stopLoader()
+                self.showShareView(withFileURL: gifFileURL)
+            }
+        }
+    }
+    
+    private func showShareView(withFileURL url: URL) {
+        let activityController = UIActivityViewController(
+            activityItems: [url], applicationActivities: nil
+        )
+        
+        activityController.completionWithItemsHandler = { _, _, _, _ in
+            try? FileManager.default.removeItem(at: url)
+        }
+        
+        view?.present(activityController, animated: true)
     }
 }

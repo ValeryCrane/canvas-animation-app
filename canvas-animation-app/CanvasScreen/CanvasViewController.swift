@@ -13,6 +13,8 @@ extension CanvasViewController {
         static let drawingToolBarBottomMargin: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 8 : 0
         static let drawingToolBarSideMargin: CGFloat = 16
         
+        static let shareButtonSideMargin: CGFloat = 32
+        
         static let canvasViewCornerRadius: CGFloat = 20
     }
 }
@@ -42,6 +44,8 @@ final class CanvasViewController: UIViewController {
     private let animationView = CanvasAnimationView()
     private let animationBackgroundView = CanvasBackgroundView()
     
+    private let shareButton = ToolButton(image: .res.share)
+    
     private var areCanvasToolsEnabled: Bool = true
     
     init(model: CanvasModelInput) {
@@ -66,6 +70,9 @@ final class CanvasViewController: UIViewController {
         layoutDrawingToolBar()
         layoutCanvasView()
         layoutCanvasAnimationView()
+        
+        configureShareButton()
+        layoutShareButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -156,6 +163,28 @@ final class CanvasViewController: UIViewController {
             animationView.trailingAnchor.constraint(equalTo: animationBackgroundView.trailingAnchor),
             animationView.bottomAnchor.constraint(equalTo: animationBackgroundView.bottomAnchor)
         ])
+    }
+    
+    private func configureShareButton() {
+        shareButton.addTarget(
+            self, action: #selector(onShareButtonPressed(_:)), for: .touchUpInside
+        )
+    }
+    
+    private func layoutShareButton() {
+        view.addSubview(shareButton)
+        shareButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            shareButton.centerYAnchor.constraint(equalTo: drawingToolBar.centerYAnchor),
+            shareButton.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor, constant: -Constants.shareButtonSideMargin
+            )
+        ])
+    }
+    
+    @objc
+    private func onShareButtonPressed(_ sender: UIButton) {
+        model.didTapExportGIFButton()
     }
 }
 

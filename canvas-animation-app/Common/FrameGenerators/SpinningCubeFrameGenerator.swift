@@ -27,11 +27,7 @@ final class SpinningCubeFrameGenerator: FrameGenerator {
         self.strokeWidth = strokeWidth
     }
     
-    func generate(
-        frameCount: Int, 
-        frameSize: CGSize,
-        completion: @escaping ([AnimationFrame]) -> Void
-    ) {
+    func generate(frameCount: Int, frameSize: CGSize) -> [AnimationFrame] {
         let cubeCenters = generateCubeCenters(frameCount: frameCount, frameSize: frameSize)
         var frames: [AnimationFrame] = []
         
@@ -45,7 +41,7 @@ final class SpinningCubeFrameGenerator: FrameGenerator {
             ))
         }
         
-        completion(frames)
+        return frames
     }
     
     private func generateCubeCenters(frameCount: Int, frameSize: CGSize) -> [CGPoint] {

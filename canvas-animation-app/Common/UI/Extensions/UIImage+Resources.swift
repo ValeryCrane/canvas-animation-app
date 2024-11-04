@@ -27,5 +27,6 @@ extension UIImage {
         static let strokeSliderThumb: UIImage = .init(named: "stroke_slider_thumb")!
         
         static let checkmark: UIImage = .init(systemName: "checkmark")!
+        static let share: UIImage = .init(systemName: "square.and.arrow.up")!
     }
 }
