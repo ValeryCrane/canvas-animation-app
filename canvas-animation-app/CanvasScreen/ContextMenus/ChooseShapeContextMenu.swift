@@ -11,19 +11,16 @@ extension ChooseShapeContextMenu {
     enum Shape: CaseIterable {
         case square
         case circle
-        case triangle
-        case arrow
+        case line
         
         func image() -> UIImage {
             switch self {
             case .square:
-                    .res.square
+                .res.square
             case .circle:
-                    .res.circle
-            case .triangle:
-                    .res.triangle
-            case .arrow:
-                    .res.arrowUp
+                .res.circle
+            case .line:
+                .res.line
             }
         }
     }
@@ -74,12 +71,19 @@ final class ChooseShapeContextMenu: UIVisualEffectView {
     
     init(delegate: ChooseShapeContextMenuDelegate? = nil, shape: Shape? = nil) {
         self.delegate = delegate
-        self.shape = shape
         
         super.init(effect: UIBlurEffect(style: .systemUltraThinMaterial))
         
         layout()
         alpha = 0
+        
+        for i in 0 ..< Shape.allCases.count {
+            if Shape.allCases[i] == shape {
+                collectionView.selectItem(
+                    at: .init(row: i, section: 0), animated: false, scrollPosition: .top
+                )
+            }
+        }
     }
     
     @available(*, unavailable)

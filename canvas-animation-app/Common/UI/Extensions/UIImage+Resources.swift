@@ -18,8 +18,7 @@ extension UIImage {
         
         static let square: UIImage = .init(named: "square")!
         static let circle: UIImage = .init(named: "circle")!
-        static let triangle: UIImage = .init(named: "triangle")!
-        static let arrowUp: UIImage = .init(named: "arrow_up")!
+        static let line: UIImage = .init(named: "line")!
         
         static let canvasBackground: UIImage = .init(named: "canvas_background")!
         

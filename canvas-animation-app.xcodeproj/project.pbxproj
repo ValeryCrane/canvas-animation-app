@@ -36,6 +36,9 @@
 		A349B05A2CD922C30057C0E7 /* UIImage+scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = A349B0592CD922C30057C0E7 /* UIImage+scale.swift */; };
 		A349B05D2CD9358B0057C0E7 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A349B05C2CD9358B0057C0E7 /* LoadingViewController.swift */; };
 		A349B05F2CD935E80057C0E7 /* UIViewController+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A349B05E2CD935E80057C0E7 /* UIViewController+Loader.swift */; };
+		A349B0632CD94B680057C0E7 /* RectangleDrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A349B0622CD94B680057C0E7 /* RectangleDrawingTool.swift */; };
+		A349B0652CD94B760057C0E7 /* EllipseDrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A349B0642CD94B760057C0E7 /* EllipseDrawingTool.swift */; };
+		A349B0672CD94B7E0057C0E7 /* LineDrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A349B0662CD94B7E0057C0E7 /* LineDrawingTool.swift */; };
 		A352D1B42CD5A94A00349266 /* DrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352D1B02CD5A94A00349266 /* DrawingTool.swift */; };
 		A352D1B52CD5A94A00349266 /* EraserDrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352D1B12CD5A94A00349266 /* EraserDrawingTool.swift */; };
 		A352D1B62CD5A94A00349266 /* PencilDrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352D1B22CD5A94A00349266 /* PencilDrawingTool.swift */; };
@@ -104,6 +107,9 @@
 		A349B0592CD922C30057C0E7 /* UIImage+scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+scale.swift"; sourceTree = "<group>"; };
 		A349B05C2CD9358B0057C0E7 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		A349B05E2CD935E80057C0E7 /* UIViewController+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loader.swift"; sourceTree = "<group>"; };
+		A349B0622CD94B680057C0E7 /* RectangleDrawingTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleDrawingTool.swift; sourceTree = "<group>"; };
+		A349B0642CD94B760057C0E7 /* EllipseDrawingTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipseDrawingTool.swift; sourceTree = "<group>"; };
+		A349B0662CD94B7E0057C0E7 /* LineDrawingTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineDrawingTool.swift; sourceTree = "<group>"; };
 		A352D1B02CD5A94A00349266 /* DrawingTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingTool.swift; sourceTree = "<group>"; };
 		A352D1B12CD5A94A00349266 /* EraserDrawingTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EraserDrawingTool.swift; sourceTree = "<group>"; };
 		A352D1B22CD5A94A00349266 /* PencilDrawingTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PencilDrawingTool.swift; sourceTree = "<group>"; };
@@ -237,6 +243,9 @@
 				A352D1B02CD5A94A00349266 /* DrawingTool.swift */,
 				A352D1B12CD5A94A00349266 /* EraserDrawingTool.swift */,
 				A352D1B22CD5A94A00349266 /* PencilDrawingTool.swift */,
+				A349B0622CD94B680057C0E7 /* RectangleDrawingTool.swift */,
+				A349B0642CD94B760057C0E7 /* EllipseDrawingTool.swift */,
+				A349B0662CD94B7E0057C0E7 /* LineDrawingTool.swift */,
 			);
 			path = DrawingTools;
 			sourceTree = "<group>";
@@ -494,7 +503,10 @@
 				A352D1D62CD7EA0100349266 /* FrameGenerator.swift in Sources */,
 				A32F72372CD44BAA00A684A7 /* FixedCollectionViewFlowLayout.swift in Sources */,
 				A352D1BA2CD5C67D00349266 /* FramesViewController.swift in Sources */,
+				A349B0672CD94B7E0057C0E7 /* LineDrawingTool.swift in Sources */,
+				A349B0632CD94B680057C0E7 /* RectangleDrawingTool.swift in Sources */,
 				A352D1E62CD84E0E00349266 /* FPSContextMenu.swift in Sources */,
+				A349B0652CD94B760057C0E7 /* EllipseDrawingTool.swift in Sources */,
 				A349B0562CD8CD540057C0E7 /* RGBColorPickerView.swift in Sources */,
 				A352D1C92CD6CCA600349266 /* String+dimensions.swift in Sources */,
 			);

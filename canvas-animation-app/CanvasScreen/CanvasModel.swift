@@ -31,6 +31,7 @@ protocol CanvasModelOutput: UIViewController {
     func setIsFramesButtonEnabled(_ isEnabled: Bool)
     func setIsPlayButtonEnabled(_ isEnabled: Bool)
     func setIsPauseButtonEnabled(_ isEnabled: Bool)
+    func setIsShareButtonEnabled(_ isEnabled: Bool)
     func setAreCanvasToolsEnabled(_ areEnabled: Bool)
 }
 
@@ -158,6 +159,7 @@ extension CanvasModel: CanvasModelInput {
         view?.setIsDeleteButtonEnabled(false)
         view?.setIsAddFrameButtonEnabled(false)
         view?.setIsFramesButtonEnabled(false)
+        view?.setIsShareButtonEnabled(false)
         view?.setIsPlayButtonEnabled(false)
         view?.setIsPauseButtonEnabled(true)
         view?.setAreCanvasToolsEnabled(false)
@@ -171,6 +173,7 @@ extension CanvasModel: CanvasModelInput {
         view?.setIsDeleteButtonEnabled(frames.count > 1)
         view?.setIsAddFrameButtonEnabled(true)
         view?.setIsFramesButtonEnabled(true)
+        view?.setIsShareButtonEnabled(true)
         view?.setIsPlayButtonEnabled(true)
         view?.setIsPauseButtonEnabled(false)
         view?.setAreCanvasToolsEnabled(true)

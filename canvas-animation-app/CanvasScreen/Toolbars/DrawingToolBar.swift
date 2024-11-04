@@ -11,8 +11,7 @@ extension DrawingToolBar {
         case eraser
         case square
         case circle
-        case triangle
-        case arrow
+        case line
         
         static func fromChooseShapeContextMenuShape(_ shape: ChooseShapeContextMenu.Shape) -> Self {
             switch shape {
@@ -20,10 +19,8 @@ extension DrawingToolBar {
                 return .square
             case .circle:
                 return .circle
-            case .triangle:
-                return .triangle
-            case .arrow:
-                return .arrow
+            case .line:
+                return .line
             }
         }
         
@@ -33,10 +30,8 @@ extension DrawingToolBar {
                 return .square
             case .circle:
                 return .circle
-            case .triangle:
-                return .triangle
-            case .arrow:
-                return .arrow
+            case .line:
+                return .line
             case .pencil, .eraser:
                 return nil
             }
@@ -164,17 +159,17 @@ final class DrawingToolBar: CustomToolBar {
                 strokeWidth: 20
             ))
         case .square:
-            // TODO.
-            break
+            delegate?.drawingToolBar(self, didSelectTool: RectangleDrawingTool(
+                strokeColor: strokeColor, strokeWidth: strokeWidth
+            ))
         case .circle:
-            // TODO.
-            break
-        case .triangle:
-            // TODO.
-            break
-        case .arrow:
-            // TODO.
-            break
+            delegate?.drawingToolBar(self, didSelectTool: EllipseDrawingTool(
+                strokeColor: strokeColor, strokeWidth: strokeWidth
+            ))
+        case .line:
+            delegate?.drawingToolBar(self, didSelectTool: LineDrawingTool(
+                strokeColor: strokeColor, strokeWidth: strokeWidth
+            ))
         case nil:
             delegate?.drawingToolBar(self, didSelectTool: nil)
         }
@@ -188,7 +183,10 @@ final class DrawingToolBar: CustomToolBar {
     
     @objc
     private func didTapBrushButton(_ sender: ToolButton) {
-        guard !isStrokeWidthContextMenuVisible else { return }
+        guard !isStrokeWidthContextMenuVisible else {
+            dismissContextMenusAndResetState()
+            return
+        }
         
         dismissContextMenusAndResetState()
         
@@ -210,7 +208,10 @@ final class DrawingToolBar: CustomToolBar {
     
     @objc
     private func didTapInstrumentsButton(_ sender: ToolButton) {
-        guard !isShapesContextMenuVisible else { return }
+        guard !isShapesContextMenuVisible else {
+            dismissContextMenusAndResetState()
+            return
+        }
         
         dismissContextMenusAndResetState()
         
@@ -226,7 +227,10 @@ final class DrawingToolBar: CustomToolBar {
     
     @objc
     private func didTapColorPickerButton(_ sender: ColorPickerControl) {
-        guard !isColorsContextMenuVisible else { return }
+        guard !isColorsContextMenuVisible else {
+            dismissContextMenusAndResetState()
+            return
+        }
         
         dismissContextMenusAndResetState()
         colorPickerButton.showContextMenu(ColorPickerContextMenu(initialColor: strokeColor, delegate: self))

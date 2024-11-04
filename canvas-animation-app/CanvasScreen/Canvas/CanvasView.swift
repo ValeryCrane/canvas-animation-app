@@ -5,6 +5,7 @@ protocol CanvasViewDelegate: AnyObject {
     func canvasView(_ canvasView: CanvasView, updateIsUndoEnabled isUndoEnabled: Bool)
     func canvasView(_ canvasView: CanvasView, updateIsRedoEnabled isRedoEnabled: Bool)
     func canvasView(_ canvasView: CanvasView, didAlterFrame frame: AnimationFrame)
+    func canvasViewStartedEditing(_ canvasView: CanvasView)
 }
 
 final class CanvasView: UIView {
@@ -124,6 +125,7 @@ final class CanvasView: UIView {
         
         switch sender.state {
         case .began:
+            delegate?.canvasViewStartedEditing(self)
             currentTool?.startedPan(atPoint: point)
         case .changed:
             currentTool?.continuedPan(atPoint: point)

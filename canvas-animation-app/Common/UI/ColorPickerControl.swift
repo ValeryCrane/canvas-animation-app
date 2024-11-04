@@ -20,6 +20,12 @@ final class ColorPickerControl: UIControl {
         }
     }
     
+    override var isEnabled: Bool {
+        didSet {
+            alpha = isEnabled ? 1 : 0.5
+        }
+    }
+    
     private let iconLayer = CALayer()
     
     init(color: UIColor) {

@@ -73,6 +73,8 @@ final class CanvasViewController: UIViewController {
         
         configureShareButton()
         layoutShareButton()
+        
+        configureBackgroundGestureRecognizer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -182,9 +184,23 @@ final class CanvasViewController: UIViewController {
         ])
     }
     
+    private func configureBackgroundGestureRecognizer() {
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapBackground(_:))
+        )
+        
+        view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
     @objc
     private func onShareButtonPressed(_ sender: UIButton) {
         model.didTapExportGIFButton()
+    }
+    
+    @objc
+    private func didTapBackground(_ sender: UITapGestureRecognizer) {
+        drawingToolBar.dismissContextMenusAndResetState()
     }
 }
 
@@ -227,6 +243,10 @@ extension CanvasViewController: CanvasModelOutput {
         actionsToolBar.setIsPauseButtonEnabled(isEnabled)
     }
     
+    func setIsShareButtonEnabled(_ isEnabled: Bool) {
+        shareButton.isEnabled = isEnabled
+    }
+    
     func setAreCanvasToolsEnabled(_ areEnabled: Bool) {
         areCanvasToolsEnabled = areEnabled
         
@@ -247,6 +267,10 @@ extension CanvasViewController: CanvasViewDelegate {
     
     func canvasView(_ canvasView: CanvasView, updateIsRedoEnabled isRedoEnabled: Bool) {
         actionsToolBar.setIsRedoButtonEnabled(isRedoEnabled && areCanvasToolsEnabled)
+    }
+    
+    func canvasViewStartedEditing(_ canvasView: CanvasView) {
+        drawingToolBar.dismissContextMenusAndResetState()
     }
 }
 
@@ -327,6 +351,7 @@ extension CanvasViewController: ActionsToolBarDelegate {
     }
     
     private func showChangeFPSContextMenu() {
+        drawingToolBar.dismissContextMenusAndResetState()
         drawingToolBar.showContextMenu(FPSContextMenu(initialFPS: model.getAnimationFPS(), delegate: self))
     }
 }
