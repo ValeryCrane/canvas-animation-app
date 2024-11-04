@@ -45,11 +45,11 @@ extension UIColor {
         ]
         
         static let fullPalette: [UIColor] = [
-            .paletteBeige, .paletteYellow, .paletteGreen1, .paletteGreen2, .paletteGreen3,
-            .paletteRed1, .paletteRed2, .paletteRed3, .paletteRed4, .paletteRed5,
-            .paletteOrange1, .paletteOrange2, .paletteOrange3, .paletteOrange4, .paletteOrange5,
-            .palettePurple1, .palettePurple2, .palettePurple3, .palettePurple4, .palettePurple5,
-            .paletteBlue1, .paletteBlue2, .paletteBlue3, .paletteBlue4, .paletteBlue5
+            .paletteBeige, .paletteRed1, .paletteOrange1, palettePurple1, .paletteBlue1,
+            .paletteYellow, .paletteRed2, .paletteOrange2, palettePurple2, .paletteBlue2,
+            .paletteGreen1, .paletteRed3, .paletteOrange3, palettePurple3, .paletteBlue3,
+            .paletteGreen2, .paletteRed4, .paletteOrange4, palettePurple4, .paletteBlue4,
+            .paletteGreen3, .paletteRed5, .paletteOrange5, palettePurple5, .paletteBlue5
         ]
     }
 }

@@ -73,8 +73,6 @@ final class CanvasViewController: UIViewController {
         
         configureShareButton()
         layoutShareButton()
-        
-        configureBackgroundGestureRecognizer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -184,23 +182,9 @@ final class CanvasViewController: UIViewController {
         ])
     }
     
-    private func configureBackgroundGestureRecognizer() {
-        let tapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(didTapBackground(_:))
-        )
-        
-        view.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
     @objc
     private func onShareButtonPressed(_ sender: UIButton) {
         model.didTapExportGIFButton()
-    }
-    
-    @objc
-    private func didTapBackground(_ sender: UITapGestureRecognizer) {
-        drawingToolBar.dismissContextMenusAndResetState()
     }
 }
 
