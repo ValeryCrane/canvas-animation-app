@@ -6,14 +6,6 @@ struct PencilStroke: DrawingToolStroke {
         PencilDrawingTool.drawStroke(self, inContext: context)
     }
     
-    func withAlphaComponent(_ alpha: CGFloat) -> PencilStroke {
-        .init(
-            strokeColor: strokeColor.withAlphaComponent(alpha),
-            strokeWidth: strokeWidth,
-            points: points
-        )
-    }
-    
     let strokeColor: UIColor
     let strokeWidth: CGFloat
     let points: [CGPoint]

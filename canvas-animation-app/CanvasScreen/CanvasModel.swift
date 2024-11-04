@@ -37,6 +37,8 @@ protocol CanvasModelOutput: UIViewController {
 final class CanvasModel {
     weak var view: CanvasModelOutput?
     
+    private let frameGenerator: FrameGenerator = SpinningCubeFrameGenerator()
+    
     private var animationFPS = 30
     
     private var currentFrameIndex: Int = 0
@@ -114,7 +116,19 @@ extension CanvasModel: CanvasModelInput {
     }
     
     func didRequestToGenerateFrames(count: Int) {
-        // TODO.
+        guard let lastFrame = frames.last else { return }
+        
+        frameGenerator.generate(
+            frameCount: count,
+            frameSize: lastFrame.size
+        ) { [weak self] animationFrames in
+            guard let self else { return }
+            
+            self.frames.append(contentsOf: animationFrames)
+            self.currentFrameIndex = self.frames.count - 1
+            self.view?.setIsDeleteButtonEnabled(frames.count > 1)
+            self.view?.changeFrame(frame: self.currentFrame, undelyingFrame: self.underlyingFrame)
+        }
     }
     
     func didTapFramesButton() {
